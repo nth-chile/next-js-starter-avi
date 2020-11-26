@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useEntry } from '@/lib/swr-hooks'
 import Container from '@/components/container'
 import Nav from '@/components/nav'
+import Auth from '@/components/auth'
 
 export default function EditEntryPage() {
   const router = useRouter()
@@ -11,23 +12,23 @@ export default function EditEntryPage() {
 
   if (data) {
     return (
-      <>
+      <Auth>
         <Nav title="View" />
         <Container>
           <h1 className="font-bold text-3xl my-2">{data.title}</h1>
           <p>{data.content}</p>
         </Container>
-      </>
+      </Auth>
     )
   } else {
     return (
-      <>
+      <Auth>
         <Nav title="View" />
         <Container>
           <h1 className="font-bold text-3xl my-2">...</h1>
           <p>...</p>
         </Container>
-      </>
+      </Auth>
     )
   }
 }
