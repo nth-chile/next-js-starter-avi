@@ -1,5 +1,4 @@
 import Skeleton from 'react-loading-skeleton'
-import { useAuth0 } from '@auth0/auth0-react'
 
 import Nav from '@/components/nav'
 import Container from '@/components/container'
@@ -10,12 +9,6 @@ import { useEntries } from '@/lib/swr-hooks'
 
 export default function IndexPage() {
   const { entries, isLoading } = useEntries()
-
-  const auth0 = useAuth0()
-  
-  if (!auth0.isLoading && !auth0.isAuthenticated) {
-    auth0.loginWithRedirect()
-  }
 
   if (isLoading) {
     return (
