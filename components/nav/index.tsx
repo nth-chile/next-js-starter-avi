@@ -3,6 +3,8 @@ import Container from '@/components/container'
 import ButtonLink from '@/components/button-link'
 import Button from '@/components/button'
 import { useAuth0 } from '@auth0/auth0-react'
+import { useEffect } from 'react'
+import axios from 'axios'
 
 export default function Nav({ title = 'Entries' }) {
   const auth0 = useAuth0()
@@ -14,6 +16,20 @@ export default function Nav({ title = 'Entries' }) {
   const handleLogoutClick = () => {
     auth0.logout()
   }
+
+  console.log(auth0.user);
+
+  useEffect(() => {
+    if (auth0.isAuthenticated) {
+      axios.post('http://localhost:3000/api/create-user', {
+        user: auth0.user
+      }).then(res => {
+        if (res) {
+          console.log(res);
+        }
+      })
+    }
+  }, [auth0.isAuthenticated])
 
   return (
     <Container className="py-4">
