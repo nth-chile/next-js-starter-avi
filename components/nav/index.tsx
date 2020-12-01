@@ -17,8 +17,6 @@ export default function Nav({ title = 'Landing Pages' }) {
     auth0.logout()
   }
 
-  console.log(auth0.user);
-
   useEffect(() => {
     if (auth0.isAuthenticated) {
       axios.post('http://localhost:3000/api/create-user', {

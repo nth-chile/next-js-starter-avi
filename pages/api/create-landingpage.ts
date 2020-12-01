@@ -5,7 +5,7 @@ import { query } from '../../lib/db'
 const filter = new Filter()
 
 const handler: NextApiHandler = async (req, res) => {
-  const { nickname, headline } = req.body
+  const { nickname, headline, maybeEmail, pageurl } = req.body
   try {
     if (!nickname || !headline) {
       return res
@@ -17,7 +17,7 @@ const handler: NextApiHandler = async (req, res) => {
       `
       CALL INS_LANDINGPAGE (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
       `,
-      [filter.clean(nickname), filter.clean(headline),'','','','','','',1,'','','','','']
+      [filter.clean(nickname), filter.clean(headline),'','','','','','',maybeEmail || '','','','','', pageurl || '']
     )
     
     return res.json(results)
