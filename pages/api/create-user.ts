@@ -25,12 +25,19 @@ const handler: NextApiHandler = async (req, res) => {
     let result:any = ''
 
     if (Array.isArray(existingUsers) && existingUsers.length === 0) {
+      // result = await query(
+      //   `
+      //   INSERT INTO user (email, meta)
+      //   VALUES (?, ?)
+      //   `,
+      //   [email, stringified]
+      // )
+
       result = await query(
         `
-        INSERT INTO user (email, meta)
-        VALUES (?, ?)
+        CALL ins_user_team (?, ?, ?, ?)
         `,
-        [email, stringified]
+        [email, stringified, email, email]
       )
 
       console.log('created new user');
