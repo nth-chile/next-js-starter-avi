@@ -16,6 +16,8 @@ api/create-landingpage.ts
 components/landingpageform
 - not able to use the returned pageurl in the stored proc to redirect to router.
 
+api/create-landingpage
+- add user warning if pageurl already exists inside the form itself
 
 Questions for Jared
 ===================
@@ -23,3 +25,4 @@ Questions for Jared
 -Can't get the API to fire after creating a new user
 -typescript message errors in VS Code
 -how to access the json.pageurl info in components/landingpageform/index.tsx
+-how to pass in data into props so we can manipulate nav component (see api/landingpage/[pageurl.tsx])

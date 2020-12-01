@@ -5,8 +5,10 @@ function fetcher(url: string) {
 }
 
 
-export function useLandingPages() {
-  const { data, error } = useSWR(`/api/get-landingpages`, fetcher)
+export function useLandingPages(email) {
+  const encodedEmail = encodeURIComponent(email)
+
+  const { data, error } = useSWR(`/api/get-landingpages?email=${encodedEmail}`, fetcher)
 
   return {
     landingpages: data,

@@ -5,35 +5,25 @@ import { query } from '../../lib/db'
 const varUser_id = 1; //override for testing...
 //varUser_id = user_id;
 
-const handler: NextApiHandler = async (_, res) => {
+const handler: NextApiHandler = async (req, res) => {
+  const { query: reqQuery } = req
+
+  const email = reqQuery.email as string
+
   try {
-  //   const results = await query(`
-  //     SELECT * FROM entries
-  //     ORDER BY id DESC
-  //     LIMIT 10
-  // `)
-
-//   const results = await query(
-//   `
-//   CALL sel_landingpage_by_user 
-//   (?)
-//   `,
-//   [varUser_id]
-// ) 
-
-const results = await query(
-  `
-  select landingpage.* 
-	from 
-		landingpage 
-INNER JOIN team_user USING (team_id)
-WHERE 
-	team_user.user_id = ?
-ORDER BY 
-	landingpage.crdate DESC; 
-  `,
-  [varUser_id]
-) 
+    const results = await query(
+      `
+      select landingpage.*
+	from
+		landingpage
+INNER JOIN user USING (user_id)
+WHERE
+	user.email = ?
+ORDER BY
+	landingpage.crdate ASC; 
+      `,
+      [email]
+    ) 
 
     return res.json(results)
   } catch (e) {

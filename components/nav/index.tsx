@@ -17,8 +17,6 @@ export default function Nav({ title = 'Landing Pages' }) {
     auth0.logout()
   }
 
-  console.log(auth0.user);
-
   useEffect(() => {
     if (auth0.isAuthenticated) {
       axios.post('http://localhost:3000/api/create-user', {
@@ -32,7 +30,6 @@ export default function Nav({ title = 'Landing Pages' }) {
   }, [auth0.isAuthenticated])
 
   return (
-    <Container className="py-4">
       <nav>
         <div className="flex justify-between items-center">
           <div>
@@ -45,6 +42,5 @@ export default function Nav({ title = 'Landing Pages' }) {
           {typeof window !== 'undefined' && !auth0.isLoading && auth0.isAuthenticated && <Button onClick={handleLogoutClick}>Log out</Button>}
         </div>
       </nav>
-    </Container>
   )
 }
