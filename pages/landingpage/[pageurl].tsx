@@ -1,22 +1,22 @@
 import { useRouter } from 'next/router'
 
-import { useEntry } from '@/lib/swr-hooks'
+import { useLandingPageByUrl } from '@/lib/swr-hooks'
 import Container from '@/components/container'
 import Nav from '@/components/nav'
 import Auth from '@/components/auth'
 
-export default function EditEntryPage() {
+export default function LandingPage() {
   const router = useRouter()
-  const id = router.query.id?.toString()
-  const { data } = useEntry(id)
+  const pageurl = router.query.pageurl?.toString()
+  const { data } = useLandingPageByUrl(pageurl)
 
   if (data) {
     return (
       <Auth>
         <Nav title="View" />
         <Container>
-          <h1 className="font-bold text-3xl my-2">{data.title}</h1>
-          <p>{data.content}</p>
+          <h1 className="font-bold text-3xl my-2">{data.nickname}</h1>
+          <p>{data.headline}</p>
         </Container>
       </Auth>
     )

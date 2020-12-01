@@ -2,13 +2,13 @@ import Skeleton from 'react-loading-skeleton'
 
 import Nav from '@/components/nav'
 import Container from '@/components/container'
-import LandingPages from '@/components/landingpages'
+import Entries from '@/components/entries'
 import Auth from '@/components/auth'
 
-import { useLandingPages } from '@/lib/swr-hooks'
+import { useEntries } from '@/lib/swr-hooks'
 
 export default function IndexPage() {
-  const { landingpages, isLoading } = useLandingPages()
+  const { entries, isLoading } = useEntries()
 
   if (isLoading) {
     return (
@@ -35,7 +35,7 @@ export default function IndexPage() {
       <div>
         <Nav />
         <Container>
-          <LandingPages landingpages={landingpages} />
+          <Entries entries={entries} />
         </Container>
       </div>
     </Auth>

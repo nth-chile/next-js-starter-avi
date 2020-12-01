@@ -9,6 +9,7 @@ export const db = mysql({
   },
 })
 
+
 export async function query(
   q: string,
   values: (string | number)[] | string | number = []

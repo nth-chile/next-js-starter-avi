@@ -1,14 +1,14 @@
 import Container from '@/components/container'
 import Nav from '@/components/nav'
 import Auth from '@/components/auth'
-import EditEntryForm from '@/components/edit-entry-form'
+import EditLandingPageForm from '@/components/edit-landingpage-form'
 
-export default function EditEntryPage() {
+export default function EditLandingPage() {
   return (
     <Auth>
       <Nav title="Edit" />
       <Container>
-        <EditEntryForm />
+        <EditLandingPageForm />
       </Container>
     </Auth>
   )

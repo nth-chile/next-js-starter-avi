@@ -15,12 +15,13 @@ const handler: NextApiHandler = async (req, res) => {
 
     const results = await query(
       `
-      CALL INS_LANDINGPAGE (?, ?)
+      CALL INS_LANDINGPAGE (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
       `,
-      [filter.clean(nickname), filter.clean(headline)]
+      [filter.clean(nickname), filter.clean(headline),'','','','','','',1,'','','','','']
     )
-
+    
     return res.json(results)
+   
   } catch (e) {
     res.status(500).json({ message: e.message })
   }

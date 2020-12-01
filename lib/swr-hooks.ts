@@ -4,16 +4,21 @@ function fetcher(url: string) {
   return window.fetch(url).then((res) => res.json())
 }
 
-export function useEntries() {
-  const { data, error } = useSWR(`/api/get-entries`, fetcher)
+
+export function useLandingPages() {
+  const { data, error } = useSWR(`/api/get-landingpages`, fetcher)
 
   return {
-    entries: data,
+    landingpages: data,
     isLoading: !error && !data,
     isError: error,
   }
 }
 
-export function useEntry(id: string) {
-  return useSWR(`/api/get-entry?id=${id}`, fetcher)
+export function useLandingPage(id: string) {
+  return useSWR(`/api/get-landingpage?id=${id}`, fetcher)
+}
+
+export function useLandingPageByUrl(pageurl: string) {
+  return useSWR(`/api/get-landingpage-by-url?pageurl=${pageurl}`, fetcher)
 }
