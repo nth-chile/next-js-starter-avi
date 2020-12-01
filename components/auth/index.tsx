@@ -6,9 +6,16 @@ function Auth({children}) {
       // domain={'test-avi.us.auth0.com'}
       // clientId={'ldJWwBedsvprVO4nvj6MpYfpN7ehjiqh'}
       // redirectUri={'http://localhost:3000/'}>
-      domain='dev-c0sbjw99.auth0.com'
-      clientId='vT2iLY8nFZrxi7xmBF65377aOWX3W6F6'
-      redirectUri='http://localhost:3000/'>
+      //  domain={process.env.AUTH0_DOMAIN}
+      //  clientId={process.env.AUTH0_CLIENTID}
+      //  redirectUri={process.env.AUTH0_REDIRECTURI}
+       domain='test-avi.us.auth0.com'
+       clientId='ldJWwBedsvprVO4nvj6MpYfpN7ehjiqh'
+       redirectUri='http://localhost:3000/'
+      // domain='dev-c0sbjw99.auth0.com'
+      // clientId='vT2iLY8nFZrxi7xmBF65377aOWX3W6F6'
+      // redirectUri='http://localhost:3000/'
+      >
         {children}
     </Auth0Provider>
   )
