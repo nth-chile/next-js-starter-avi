@@ -12,13 +12,15 @@ export default function LandingPage() {
 
   if (data) {
     return (
-      <Auth>
-        <Nav title="View" />
+      <Container>
+        <Container className="py-4">
+          <Nav title="View" />
+        </Container>
         <Container>
           <h1 className="font-bold text-3xl my-2">{data.nickname}</h1>
           <p>{data.headline}</p>
         </Container>
-      </Auth>
+      </Container>
     )
   } else {
     return (

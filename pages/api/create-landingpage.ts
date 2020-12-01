@@ -5,19 +5,21 @@ import { query } from '../../lib/db'
 const filter = new Filter()
 
 const handler: NextApiHandler = async (req, res) => {
-  const { nickname, headline } = req.body
+  const { pageurl, nickname, headline } = req.body
   try {
-    if (!nickname || !headline) {
+    if (!pageurl || !nickname || !headline) {
       return res
         .status(400)
-        .json({ message: '`nickname` and `headline` are both required' })
+        .json({ message: '`pageurl` and `nickname` and `headline` are required' })
     }
+
+    //TODO: LOOKUP IF PAGEURL IS ALREADY IN USE
 
     const results = await query(
       `
       CALL INS_LANDINGPAGE (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
       `,
-      [filter.clean(nickname), filter.clean(headline),'','','','','','',1,'','','','','']
+      [filter.clean(nickname), filter.clean(headline),'','','','','','',1,'','','','',pageurl]
     )
     
     return res.json(results)
