@@ -16,9 +16,9 @@ const handler: NextApiHandler = async (req, res) => {
     const results = await query(
       `
       CALL upd_landingpage
-      (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+      (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
       `,
-      [id, filter.clean(nickname), filter.clean(headline),'','','','','','','','','','','',pageurl]
+      [id, filter.clean(nickname), filter.clean(headline),'','','','','','','','','','',pageurl]
     )
 
     return res.json(results)

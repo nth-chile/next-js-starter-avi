@@ -39,13 +39,43 @@ export default function LandingPageForm() {
           headline: _headline
         }),
       })
-      const json = await res.json()
+
+
+
+
+      
+
       setSubmitting(false)
-      if (!res.ok) throw Error(json.message)
-      Router.push('/')
+      const json = await res.json()
+
+      const { pageurl: pageURLFromDB } = json[0][0]
+
+      if (!res.ok) { 
+        throw Error(json.message);
+      }
+
+      if (pageURLFromDB) {
+        Router.push(`/landingpage/${pageURLFromDB}`)
+      } else {
+        Router.push('/')
+      }
+      
     } catch (e) {
       throw Error(e.message)
     }
+
+
+
+
+
+
+
+
+    // if (!res.ok) throw Error(json.message)
+    //   Router.push('/')
+    // } catch (e) {
+    //   throw Error(e.message)
+    // }
   }
 
   return (

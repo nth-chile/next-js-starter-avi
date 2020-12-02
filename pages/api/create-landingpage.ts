@@ -7,13 +7,11 @@ const filter = new Filter()
 const handler: NextApiHandler = async (req, res) => {
   const { nickname, headline, maybeEmail, pageurl } = req.body
   try {
-    if (!pageurl || !nickname || !headline) {
+    if (!nickname || !headline) {
       return res
         .status(400)
-        .json({ message: '`pageurl` and `nickname` and `headline` are required' })
+        .json({ message: '`nickname` and `headline` are required' })
     }
-
-    //TODO: LOOKUP IF PAGEURL IS ALREADY IN USE
 
     const results = await query(
       `

@@ -1,11 +1,5 @@
-create-landingpage.ts
- - overrode the sql stored proc with inline sql since it was returning 2 arrays. Need to fix and restore
-
-get-landingpage-by-url.ts
- - overrode the sql stored proc with inline sql since it was not working.
-
 get-landinpages.ts
-- overrode the user_id with varUser_id = 1, since auth isn't working.
+- switch main parameter from email to user_id once we figure out how to keep that in server memory
 
 api/edit-landingpage.ts
 - blank info being passed to stored proc
@@ -14,15 +8,14 @@ api/create-landingpage.ts
 - blank info being passed to stored proc
 
 components/landingpageform
-- not able to use the returned pageurl in the stored proc to redirect to router.
+- UI: check if the pageurl exists before submitting so the user can adjust it if so...
 
-api/create-landingpage
-- add user warning if pageurl already exists inside the form itself
+Auth0 hooks
+- When we get code online, update the hooks to use domains and remove create user api post from nav (line 29)
+
+api/create-landingpage.ts
+- hacked together by using user email instead of user id. Need to fix this once we figure out how to get user_id.
 
 Questions for Jared
 ===================
--Can't get the login status to change
--Can't get the API to fire after creating a new user
 -typescript message errors in VS Code
--how to access the json.pageurl info in components/landingpageform/index.tsx
--how to pass in data into props so we can manipulate nav component (see api/landingpage/[pageurl.tsx])
