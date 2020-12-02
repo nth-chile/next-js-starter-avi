@@ -1,12 +1,19 @@
 import { NextApiHandler } from 'next'
-import Filter from 'bad-words'
 import { query } from '../../lib/db'
 
-const filter = new Filter()
+
+
 
 const handler: NextApiHandler = async (req, res) => {
+
+  console.log("req.body")
+  console.log(req.body)
+
+
+
   const { nickname, headline, subheadline, description, ctatext, ctaurl, ctasurvey, pagetags, maybeEmail, logourl, bgurl, googleanalyticsid, klpbranding, pageurl } = req.body
   try {
+
     if (!nickname || !headline) {
        return res
          .status(400)
@@ -17,8 +24,9 @@ const handler: NextApiHandler = async (req, res) => {
       `
       CALL INS_LANDINGPAGE (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
       `,
-      [filter.clean(nickname), filter.clean(headline),filter.clean(subheadline),filter.clean(description),filter.clean(ctatext),ctaurl,ctasurvey,pagetags,maybeEmail || '',logourl,bgurl,googleanalyticsid,klpbranding, pageurl || '']
+      [nickname,headline,subheadline,description,ctatext,ctaurl,ctasurvey,pagetags,maybeEmail || '',logourl,bgurl,googleanalyticsid,klpbranding, pageurl || '']
     )
+
     return res.json(results)
    
   } catch (e) {

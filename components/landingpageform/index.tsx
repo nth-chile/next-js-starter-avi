@@ -56,7 +56,12 @@ export default function LandingPageForm() {
 
       const json = await res.json()
 
-      const { pageurl: pageURLFromDB } = json[0][0]
+
+      console.log("json")
+      console.log(json)
+
+
+      const { pageurl: pageURLFromDB } = json[0]
 
       if (!res.ok) { 
         console.log(res)
