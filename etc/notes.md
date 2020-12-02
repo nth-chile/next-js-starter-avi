@@ -21,5 +21,14 @@ index.ts
 
 Questions for Jared
 ===================
--typescript message errors in VS Code sidebar 
+-typescript message errors in VS Code sidebar (eg why does api/disable-landingpages.ts say there are 2 problems with file?)
 -how to make enabling / disabling ui state change
+
+GIT INSTRUCTIONS
+================
+git commit -a -m "message"
+git push (send to github)
+git stash
+git add <filedirectory> (no carats)
+git commit --amend "message" (post a quick change)
+:wq <- when accidentally entering git CLI in terminal
