@@ -64,18 +64,6 @@ export default function LandingPageForm() {
       throw Error(e.message)
     }
 
-
-
-
-
-
-
-
-    // if (!res.ok) throw Error(json.message)
-    //   Router.push('/')
-    // } catch (e) {
-    //   throw Error(e.message)
-    // }
   }
 
   return (

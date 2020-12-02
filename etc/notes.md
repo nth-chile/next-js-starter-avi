@@ -16,6 +16,10 @@ Auth0 hooks
 api/create-landingpage.ts
 - hacked together by using user email instead of user id. Need to fix this once we figure out how to get user_id.
 
+index.ts
+- Enable / disable ui state isnt updating (but works in the db)
+
 Questions for Jared
 ===================
--typescript message errors in VS Code
+-typescript message errors in VS Code sidebar 
+-how to make enabling / disabling ui state change
