@@ -3,7 +3,8 @@ import Router, { useRouter } from 'next/router'
 
 import Button from '../button'
 
-export default function LandingPageForm() {
+export default function LandingPageForm({ landingpage_id, nickname, headline, subheadline, description, ctatext, ctaurl, ctasurvey, pagetags, logourl, bgurl, googleanalyticsid, klpbranding, pageurl }) {
+  const [_landingpage_id, setLandingpage_id] = useState('')
   const [_nickname, setNickname] = useState('')
   const [_headline, setHeadline] = useState('')
   const [_subheadline, setSubheadline] = useState('')
@@ -19,14 +20,12 @@ export default function LandingPageForm() {
   const [_pageurl, setPageurl] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const router = useRouter()
-  const { nickname, headline, subheadline, description, ctatext, ctaurl, ctasurvey, pagetags, logourl, bgurl, googleanalyticsid, klpbranding, pageurl } = router.query
-
-
-
-
+  //const { subheadline, description, ctatext, ctaurl, ctasurvey, pagetags, logourl, bgurl, googleanalyticsid, klpbranding } = router.query
 
   useEffect(() => {
-
+    if (typeof landingpage_id === 'number') {
+      setLandingpage_id(landingpage_id)
+    }
     if (typeof nickname === 'string') {
       setNickname(nickname)
     }
@@ -60,13 +59,13 @@ export default function LandingPageForm() {
     if (typeof googleanalyticsid === 'string') {
       setGoogleanalyticsid(googleanalyticsid)
     }
-    if (typeof klpbranding === 'string') {
+    if (typeof klpbranding === 'number') {
       setKlpbranding(klpbranding)
     }
     if (typeof pageurl === 'string') {
       setPageurl(pageurl)
     }
-  }, [nickname, headline, subheadline, description, ctatext, ctaurl, ctasurvey, pagetags, logourl, bgurl, googleanalyticsid, klpbranding, pageurl])
+  }, [landingpage_id, nickname, headline, subheadline, description, ctatext, ctaurl, ctasurvey, pagetags, logourl, bgurl, googleanalyticsid, klpbranding, pageurl])
 
   async function submitHandler(e) {
     e.preventDefault()
@@ -78,9 +77,9 @@ export default function LandingPageForm() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id,
+          landingpage_id: _landingpage_id,
           nickname: _nickname,
-          headline: _headline
+          headline: _headline,
           subheadline: _subheadline,
           description: _description,
           ctatext: _ctatext,
@@ -94,11 +93,6 @@ export default function LandingPageForm() {
           pageurl: _pageurl
         }),
       })
-
-
-
-
-      
 
       setSubmitting(false)
       const json = await res.json()
@@ -123,6 +117,15 @@ export default function LandingPageForm() {
 
   return (
     <form onSubmit={submitHandler}>
+
+        <input
+          id="landingpage_id"
+          className="shadow border rounded w-full"
+          type="hidden"
+          name="landingpage_id"
+          value={_landingpage_id}
+          onChange={(e) => setLandingpage_id(e.target.value)}
+        />
 
       <div className="my-4">
         <label htmlFor="nickname">

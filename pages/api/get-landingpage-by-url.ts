@@ -10,10 +10,6 @@ import { query } from '../../lib/db'
 const handler: NextApiHandler = async (req, res) => {
   const { pageurl } = req.query
 
-  console.log('CREATING NEW PAGE')
-  console.log(pageurl);
-  console.log('/CREATING')
-
   try {
     if (!pageurl) {
       return res.status(400).json({ message: '`pageurl` required' })

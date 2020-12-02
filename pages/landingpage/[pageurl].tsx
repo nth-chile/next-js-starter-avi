@@ -5,11 +5,13 @@ import Container from '@/components/container'
 import Nav from '@/components/nav'
 
 export default function LandingPage() {
+
   const router = useRouter()
   const pageurl = router.query.pageurl?.toString()
   const { data } = useLandingPageByUrl(pageurl)
 
   if (data) {
+
     return (
       <Container>
         <Container className="py-4">

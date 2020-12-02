@@ -47,7 +47,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, vstatus }) {
             Preview
           </ButtonLink>
           <ButtonLink
-            href={`/landingpage/edit/${landingpage_id}?pageurl=${pageurl}&nickname=${nickname}&headline=${headline}`}
+            href={`/landingpage/edit/${pageurl}`}
             className="h-5 py-0 mx-1"
           >
             Edit

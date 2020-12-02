@@ -23,7 +23,9 @@ Questions for Jared
 ===================
 -typescript message errors in VS Code sidebar (eg why does api/disable-landingpages.ts say there are 2 problems with file?)
 -how to make enabling / disabling ui state change
--how to make individual inputs into a component so i can build this rapidly (eg. landingpageform
+-how to make individual inputs into a component so i can build this rapidly (eg. landingpageform)
+-how to debug create-landingpage form (not sure what broke)
+-how to know when console / info is used by the browser or server??
 
 TODO
 ================
