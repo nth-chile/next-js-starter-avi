@@ -6,7 +6,14 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useLandingPages } from '@/lib/swr-hooks'
 
 function UnauthenticatedIndexPage() {
-  return <div>UnauthenticatedIndexPage</div>
+  return (
+    <div>
+      <Nav />
+        <Container>
+          Not authenticated.
+        </Container>
+    </div>
+  )
 }
 
 function AuthenticatedIndexPage({ email }) {

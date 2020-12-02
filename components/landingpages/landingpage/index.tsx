@@ -8,6 +8,7 @@ import Button from '@/components/button'
 function LandingPage({ landingpage_id, nickname, headline, pageurl, vstatus }) {
   const [deleting, setDeleting ] = useState(false)
   const [disabling, setDisabling ] = useState(false)
+  const [statusBtnText, setStatusBtnText ] = useState(["Enabling...","Enable"])
 
   async function deleteLandingPage() {
     setDeleting(true)
@@ -20,17 +21,12 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, vstatus }) {
 
   async function disableLandingPage() {
     setDisabling(true)
+    setStatusBtnText(["Disabling...","Disable"])
     let res = await fetch(`/api/disable-landingpage?id=${landingpage_id}&status=${vstatus}`, { method: 'POST' })
     let json = await res.json()
     if (!res.ok) throw Error(json.message)
     mutate('/api/get-landingpages')
     setDisabling(false)
-  }
-
-  //BUTTON TEXT FOR ENABLE / DISABLE
-  var statusArray = ["Disabling...","Disable"]
-  if (vstatus == 0) {
-    statusArray = ["Enabling...","Enable"]
   }
 
   return (
@@ -57,7 +53,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, vstatus }) {
             onClick={disableLandingPage}
             className="h-5 py-0 mx-1"
           >
-            {disabling ? statusArray[0] : statusArray[1]}
+            {disabling ? statusBtnText[0] : statusBtnText[1]}
           </Button>
           <Button
             disabled={deleting}
