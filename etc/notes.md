@@ -21,23 +21,21 @@ index.ts
 
 Questions for Jared
 ===================
--typescript message errors in VS Code sidebar (eg why does api/disable-landingpages.ts say there are 2 problems with file?)
 -how to make enabling / disabling ui state change
 -how to make individual inputs into a component so i can build this rapidly (eg. landingpageform)
--how to debug create-landingpage form (not sure what broke)
--how to know when console / info is used by the browser or server??
 
 TODO
 ================
-* Add stripe integration for user subs
 * Store user_id in globally accessible variable
-* Integrate design template for landing page
 * Configure custom fields within Auth0 (username, user_id?) 
+- Store billing info from Stripe
 * Update instance -> Figure out load balancing on AWS
 - Working domain on AWS
 * Working SSL on AWS
-- Finish wiring up stored procedure and form
-* Figure out how to detach instances from command line so site stays online
+- Stats updated on CTA clicks and page calls
+- Add background image searching
+- Site design implementation in Tailwind
+- Stripe swap out credentials
 
 GIT INSTRUCTIONS
 ================
@@ -88,3 +86,4 @@ APIS
 - Auth0
 - Stripe
 - Filestack??
+- Unsplash??

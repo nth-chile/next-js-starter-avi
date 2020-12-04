@@ -4,14 +4,14 @@ import Container from '@/components/container'
 import LandingPages from '@/components/landingpages'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useLandingPages } from '@/lib/swr-hooks'
-import CheckoutBtn from "@/components/stripe/CheckoutButton"
+
 
 function UnauthenticatedIndexPage() {
   return (
     <div>
       <Nav />
         <Container>
-          Not authenticated.
+         Authenticating... please wait.
         </Container>
     </div>
   )
@@ -42,7 +42,6 @@ function AuthenticatedIndexPage({ email }) {
   return (
     <div>
       <Nav />
-      <CheckoutBtn />
       <Container>
         <LandingPages landingpages={landingpages} />
       </Container>

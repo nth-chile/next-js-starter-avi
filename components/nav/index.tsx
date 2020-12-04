@@ -5,6 +5,7 @@ import Button from '@/components/button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react'
 import axios from 'axios'
+import CheckoutBtn from "@/components/stripe/CheckoutButton"
 
 export default function Nav({ title = 'Landing Pages' }) {
   const auth0 = useAuth0()
@@ -36,10 +37,10 @@ export default function Nav({ title = 'Landing Pages' }) {
             <Link href="/">
               <a className="font-bold text-3xl mr-3">{title}</a>
             </Link>
-            <ButtonLink href="/new">New Page</ButtonLink>
+            
           </div>
           {typeof window !== 'undefined' && !auth0.isLoading && !auth0.isAuthenticated && <Button onClick={handleLoginClick}>Log in</Button>}
-          {typeof window !== 'undefined' && !auth0.isLoading && auth0.isAuthenticated && <Button onClick={handleLogoutClick}>Log out</Button>}
+          {typeof window !== 'undefined' && !auth0.isLoading && auth0.isAuthenticated && <><ButtonLink href="/new">Create Page</ButtonLink><CheckoutBtn /><Button onClick={handleLogoutClick}>Log out</Button></>}
         </div>
       </nav>
   )

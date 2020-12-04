@@ -20,8 +20,13 @@ export default function CheckoutButton() {
   
 
   return (
+    <>
+    <span>
+      Basic Plan 
+    </span>
     <Button onClick={goToCheckout}>
-      Go to checkout
+      Upgrade
     </Button>
+    </>
   )
 }
