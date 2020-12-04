@@ -18,7 +18,7 @@ export default function LandingPageForm() {
   const [logourl, setLogourl] = useState('')
   const [bgurl, setBgurl] = useState('')
   const [googleanalyticsid, setGoogleanalyticsid] = useState('')
-  const [klpbranding, setKlpbranding] = useState('')
+  const [klpbranding, setKlpbranding] = useState<string | number>('')
   const [pageurl, setPageurl] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const auth0 = useAuth0()
@@ -67,13 +67,10 @@ export default function LandingPageForm() {
       setSubmitting(false)
 
       //GRAB SNAPSHOT
-      const url = encodeURIComponent("http://yahoo.com")
-
+      const url = encodeURIComponent("http://yahoo.com") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
       const snapshot = await axios.get(`/api/get-snapshot?url=${url}&name=${pageURLFromDB}.png`)
-
-      const { filepath } = snapshot.data
-
-      console.log(filepath);
+      //const { filepath } = snapshot.data
+      //console.log(filepath);
       
       //ROUTE USER
       if (pageURLFromDB) {

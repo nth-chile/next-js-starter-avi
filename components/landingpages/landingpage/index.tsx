@@ -5,7 +5,7 @@ import { mutate } from 'swr'
 import ButtonLink from '@/components/button-link'
 import Button from '@/components/button'
 
-function LandingPage({ landingpage_id, nickname, headline, pageurl, vstatus }) {
+function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vstatus }) {
   const [deleting, setDeleting ] = useState(false)
   const [disabling, setDisabling ] = useState(false)
   const [statusBtnText, setStatusBtnText ] = useState(["Enabling...","Enable"])
@@ -32,9 +32,14 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, vstatus }) {
   return (
     <div>
       <div className="flex items-center">
-        <Link href={`/landingpage/${pageurl}`}>
-          <a className="font-bold py-2">{nickname}</a>
-        </Link>
+        <div className="flex ml-4">
+          <img src={thumburl} width="75" />
+        </div>
+        <div className="flex ml-4">
+          <Link href={`/landingpage/${pageurl}`}>
+            <a className="font-bold py-2">{nickname}</a>
+          </Link>
+        </div>
         <div className="flex ml-4">
         <ButtonLink
             href={`/landingpage/${pageurl}`}

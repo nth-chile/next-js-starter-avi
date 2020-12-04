@@ -8,7 +8,7 @@ const handler: NextApiHandler = async (req, res) => {
 
   const encodedurl = encodeURIComponent(url as string)
 
-  var snapshot = `https://api.apiflash.com/v1/urltoimage?access_key=85047c91a2b54d23a5b4cd6f16acd66f&delay=0&format=png&fresh=true&height=768&quality=100&response_type=image&thumbnail_width=400&width=1024&url=${encodedurl}`
+  var snapshot = `https://api.apiflash.com/v1/urltoimage?access_key=${process.env.APIFLASH_ACCESSKEY}&delay=0&format=png&fresh=true&height=768&quality=100&response_type=image&thumbnail_width=400&width=1024&url=${encodedurl}`
 
   try {
     // Connect to AWS
@@ -20,7 +20,7 @@ const handler: NextApiHandler = async (req, res) => {
     // URL TO BASE64
     const base64 = await axios.get(snapshot, { responseType: 'arraybuffer' })
 
-    const key = `landing-page-thumbs/${name}`
+    const key = `thumbs/${name}`
 
     // Post to AWS
     s3.putObject({
