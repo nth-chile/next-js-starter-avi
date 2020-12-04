@@ -63,6 +63,31 @@ export default function LandingPageForm() {
         throw Error(json.message);
       }
 
+      //GRAB SNAPSHOT
+      //const url = encodeURIComponent(`${window.origin}/landingpage/${pageURLFromDB}`)
+      const url = encodeURIComponent("http://google.com")
+      const snapshot = await fetch(`/api/get-snapshot?url=${url}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      setSubmitting(false)
+
+      const jsonss = await snapshot.json()
+
+      const s3url= jsonss[0]
+
+      if (!snapshot.ok) { 
+        console.log(snapshot)
+        throw Error(jsonss.message)
+      }
+
+      //UPDATE DB WITH SNAPSHOT S3 URL
+      console.log(s3url);
+
+      //ROUTE USER
       if (pageURLFromDB) {
         Router.push(`/landingpage/${pageURLFromDB}`)
       } else {

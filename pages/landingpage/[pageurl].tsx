@@ -56,6 +56,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
+              {/*
               <div className="hidden md:flex md:space-x-10">
                 <a href="#" className="font-medium text-gray-500 hover:text-gray-900">Product</a>
       
@@ -65,7 +66,7 @@ export default function LandingPage() {
       
                 <a href="#" className="font-medium text-gray-500 hover:text-gray-900">Company</a>
               </div>
-              {/* <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
+               <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
                 <span className="inline-flex rounded-md shadow">
                   <a href="#" className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50">
                     Log in
@@ -74,8 +75,8 @@ export default function LandingPage() {
               </div> */}
             </nav>
           </div>
-          <div className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
-            <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+           {/*<div className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+           <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
               <div className="px-5 pt-4 flex items-center justify-between">
                 <div>
                   <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="" />
@@ -89,6 +90,7 @@ export default function LandingPage() {
                   </button>
                 </div>
               </div>
+              
               <div role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
                 <div className="px-2 pt-2 pb-3" role="none">
                   <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Product</a>
@@ -106,28 +108,30 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </div>*/}
       
           <main className="mt-16 mx-auto max-w-7xl px-4 sm:mt-24">
             <div className="text-center">
               <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
                 <span className="block xl:inline">{data.headline}</span>
-                <span className="block text-indigo-600 xl:inline">online business</span>
+                <span className="block text-indigo-600 xl:inline">{data.subheadline}</span>
               </h1>
               <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                 {data.description}
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className="rounded-md shadow">
-                  <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
-                    Get started
+                  <a href={data.ctaurl} className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                  {data.ctatext}
                   </a>
                 </div>
+                {/* 
                 <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
                   <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
                     Live demo
                   </a>
                 </div>
+                */}
               </div>
             </div>
           </main>

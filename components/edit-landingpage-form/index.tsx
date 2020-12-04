@@ -4,7 +4,7 @@ import Router, { useRouter } from 'next/router'
 import Button from '../button'
 
 export default function LandingPageForm({ landingpage_id, nickname, headline, subheadline, description, ctatext, ctaurl, ctasurvey, pagetags, logourl, bgurl, googleanalyticsid, klpbranding, pageurl }) {
-  const [_landingpage_id, setLandingpage_id] = useState('')
+  const [_landingpage_id, setLandingpage_id] = useState<string | number>('')
   const [_nickname, setNickname] = useState('')
   const [_headline, setHeadline] = useState('')
   const [_subheadline, setSubheadline] = useState('')
@@ -16,7 +16,7 @@ export default function LandingPageForm({ landingpage_id, nickname, headline, su
   const [_logourl, setLogourl] = useState('')
   const [_bgurl, setBgurl] = useState('')
   const [_googleanalyticsid, setGoogleanalyticsid] = useState('')
-  const [_klpbranding, setKlpbranding] = useState('')
+  const [_klpbranding, setKlpbranding] = useState<string | number>('')
   const [_pageurl, setPageurl] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const router = useRouter()
