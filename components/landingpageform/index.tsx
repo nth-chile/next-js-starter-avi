@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Router from 'next/router'
 import { useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios'
 
 import Button from '@/components/button'
 
@@ -63,30 +64,17 @@ export default function LandingPageForm() {
         throw Error(json.message);
       }
 
-      //GRAB SNAPSHOT
-      //const url = encodeURIComponent(`${window.origin}/landingpage/${pageURLFromDB}`)
-      const url = encodeURIComponent("http://google.com")
-      const snapshot = await fetch(`/api/get-snapshot?url=${url}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
       setSubmitting(false)
 
-      const jsonss = await snapshot.json()
+      //GRAB SNAPSHOT
+      const url = encodeURIComponent("http://yahoo.com")
 
-      const s3url= jsonss[0]
+      const snapshot = await axios.get(`/api/get-snapshot?url=${url}&name=${pageURLFromDB}.png`)
 
-      if (!snapshot.ok) { 
-        console.log(snapshot)
-        throw Error(jsonss.message)
-      }
+      const { filepath } = snapshot.data
 
-      //UPDATE DB WITH SNAPSHOT S3 URL
-      console.log(s3url);
-
+      console.log(filepath);
+      
       //ROUTE USER
       if (pageURLFromDB) {
         Router.push(`/landingpage/${pageURLFromDB}`)
