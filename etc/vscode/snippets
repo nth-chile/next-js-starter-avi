@@ -1,0 +1,70 @@
+{
+	"console log":{
+		"prefix": "clg",
+		"body": "console.log($1);",
+		"description": "Console log"
+	},
+	"Named Function": {
+		"prefix": "nfn",
+		"body": [
+		  "function ${1:functionName}($2) {",
+		  "  $3",
+		  "}"
+		],
+		"description": "Named Function"
+	},
+	"Arrow Function": {
+		"prefix": "afn",
+		"body": [
+		  "const ${1:functionName} = ($2) => {",
+		  "  $3",
+		  "}"
+		],
+		"description": "Arrow Function"
+	},
+	"Array Method": {
+		"prefix": "arrmth",
+		"body": [
+		  "${1|forEach,map,filter,reduce,some|}(({$2:item}) => {",
+		  "  $3",
+		  "})"
+		],
+		"description": "Array Method"
+	},
+	"Axios Request": {
+		"prefix": "axreq",
+		"body": [
+		  "axios.${1|get,post,put,delete|}('${2:url}')",
+		  "  .then(res => console.log(res.data))",
+		  "  .catch(err => console.log(err));"
+		],
+		"description": "Axios Request"
+	},
+	"Express Server": {
+		"prefix": "expsrv",
+		"body": [
+		  "const express = require('express');",
+		  "",
+		  "const app = express();",
+		  "",
+		  "app.${1|get,post,put,delete|}('${2:route}', (req,res) => {",
+		  "  $3",
+		  "})",
+		  "",
+		  "const PORT = process.env.PORT || ${4|3000,5000,8000,8080,80|};",
+		  "",
+		  "app.listen(PORT, () => console.log(`Server running on Port `.concat(PORT.toString())));"
+		],
+		"description": "Express Server"
+	},
+	"console log variable": {
+		"prefix": "clv",
+		"body": [
+		  "console.log(\"~~~~~~~~~$TM_SELECTED_TEXT~~~~~~~~~\")",
+		  "console.log($TM_SELECTED_TEXT)",
+		  "console.log(\"======/$TM_SELECTED_TEXT======\")",
+		],
+		"description": "console log variable"
+	  }
+	
+}

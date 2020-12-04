@@ -63,100 +63,28 @@ sudo yarn dev
 
 TOOLS
 ===============
+Software
+- Visual Studio Code
+- MySQL Workbench
+- Chrome
+- Github Desktop
+- Terminal
+
 Libraries
 - Next.js
 - MySQL
 - Express
 - Node.js
+- Tailwind
+- Tailwind UI
 
 SaaS
 - AWS
 - Github
-- Vercel
+- Vercel??
 
 APIS
 - APIFLASH
 - Auth0
 - Stripe
-
-
-APIFLASH
-https://api.apiflash.com/v1/urltoimage?access_key=85047c91a2b54d23a5b4cd6f16acd66f&delay=0&format=png&fresh=true&height=768&quality=100&response_type=image&thumbnail_width=400&url=http%3A%2F%2Flogolo.co&width=1024
-
-
-AWSFILEUPLOAD CODE
-------------------
-const fs = require('fs');
-const AWS = require('aws-sdk');
-
-// Enter copied or downloaded access id and secret here
-const ID = '';
-const SECRET = '';
-
-// Enter the name of the bucket that you have created here
-const BUCKET_NAME = 'test-bucket-1242tsr';;
-
-
-// Initializing S3 Interface
-const s3 = new AWS.S3({
-    accessKeyId: ID,
-    secretAccessKey: SECRET
-});
-
-const uploadFile = (fileName) => {
-    // read content from the file
-    const fileContent = fs.readFileSync(fileName);
-
-    // setting up s3 upload parameters
-    const params = {
-        Bucket: BUCKET_NAME,
-        Key: 'cat.jpg', // file name you want to save as
-        Body: fileContent
-    };
-
-    // Uploading files to the bucket
-    s3.upload(params, function(err, data) {
-        if (err) {
-            throw err
-        }
-        console.log(`File uploaded successfully. ${data.Location}`)
-    });
-};
-
-// Enter the file you want to upload here
-uploadFile('cat.jpg');
-
-
-# UPLOAD FROM URL
-
-var AWS = require('aws-sdk');
-var request = require('request');
-
-AWS.config.loadFromPath('./config.json');
-var s3 = new AWS.S3();
-
-function put_from_url(url, bucket, key, callback) {
-    request({
-        url: url,
-        encoding: null
-    }, function(err, res, body) {
-        if (err)
-            return callback(err, res);
-
-        s3.putObject({
-            Bucket: bucket,
-            Key: key,
-            ContentType: res.headers['content-type'],
-            ContentLength: res.headers['content-length'],
-            Body: body // buffer
-        }, callback);
-    })
-}
-
-put_from_url('http://a0.awsstatic.com/main/images/logos/aws_logo.png', 'your_bucket', 'media/aws_logo.png', function(err, res) {
-    if (err)
-        throw err;
-
-    console.log('Uploaded data successfully!');
-});
-
+- Filestack??
