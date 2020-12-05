@@ -23,6 +23,7 @@ Questions for Jared
 ===================
 -how to make enabling / disabling ui state change
 -how to make individual inputs into a component so i can build this rapidly (eg. landingpageform)
+-how to include <!-- --> in tsx files?
 
 TODO
 ================
@@ -36,6 +37,10 @@ TODO
 - Add background image searching
 - Site design implementation in Tailwind
 - Stripe swap out credentials
+- wire up pagination
+- fix up cards layout
+* wire up enable / disable
+
 
 GIT INSTRUCTIONS
 ================
@@ -87,3 +92,15 @@ APIS
 - Stripe
 - Filestack??
 - Unsplash??
+
+
+Future Company CULTURE
+=======
+* Remote: Responsive and Proactive comm's to work well.
+- Travel:
+-- Optional in person flexspaces (can't be shared with the company)
+-- Quarterly in person all hands.
+- Communication:
+-- Document: ev.er.y.thing. Assume the target audience is someone new joining the team and getting up to speed on their own.
+-- Responsive: Respond to email the moment received (eg. dont open if not able to reply)
+-- Contextual: Slack -> quick disposable questions and answers / conversation; Email -> longform discussions that may be useful for raw log archival; Google Docs -> final concise output of decisions from conversations

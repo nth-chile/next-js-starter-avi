@@ -1,6 +1,6 @@
 import cn from 'clsx'
 
-function Button({
+function ButtonPrimary({
   onClick = console.log,
   className = '',
   children = null,
@@ -15,14 +15,19 @@ function Button({
       className={cn(
         'whitespace-nowrap',
         'inline-flex',
-        'bg-blue',
-        'text-gray-500',
-        'hover:text-gray-900',
-        'p-2',
-        'rounded',
-        'uppercase',
-        'text-sm',
+        'items-center',
+        'justify-center',
+        'px-4',
+        'py-2',
+        'border',
+        'border-transparent',
+        'rounded-md',
+        'shadow-sm',
+        'text-base',
         'font-medium',
+        'text-white',
+        'bg-indigo-600',
+        'hover:bg-indigo-700',
         {
           [className]: Boolean(className),
         }
@@ -32,4 +37,4 @@ function Button({
     </button>
   )
 }
-export default Button
+export default ButtonPrimary

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Router, { useRouter } from 'next/router'
 import axios from 'axios'
 
-import Button from '../button'
+import ButtonPrimary from '../button-primary'
 
 export default function LandingPageForm({ landingpage_id, nickname, headline, subheadline, description, ctatext, ctaurl, ctasurvey, pagetags, logourl, bgurl, googleanalyticsid, klpbranding, pageurl }) {
   const [_landingpage_id, setLandingpage_id] = useState<string | number>('')
@@ -315,9 +315,9 @@ export default function LandingPageForm({ landingpage_id, nickname, headline, su
         />
       </div>
 
-      <Button disabled={submitting} type="submit">
+      <ButtonPrimary disabled={submitting} type="submit">
         {submitting ? 'Saving ...' : 'Save'}
-      </Button>
+      </ButtonPrimary>
     </form>
   )
 }

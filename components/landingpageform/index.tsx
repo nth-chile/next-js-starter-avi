@@ -3,7 +3,7 @@ import Router from 'next/router'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 
-import Button from '@/components/button'
+import ButtonPrimary from '../button-primary'
 
 export default function LandingPageForm() {
 
@@ -270,9 +270,9 @@ export default function LandingPageForm() {
         />
       </div>
 
-      <Button disabled={submitting} type="submit">
+      <ButtonPrimary disabled={submitting} type="submit">
         {submitting ? 'Creating ...' : 'Create'}
-      </Button>
+      </ButtonPrimary>
     </form>
   )
 }

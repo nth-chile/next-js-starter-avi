@@ -2,6 +2,7 @@ import Skeleton from 'react-loading-skeleton'
 import Nav from '@/components/nav'
 import Container from '@/components/container'
 import LandingPages from '@/components/landingpages'
+import Pagination from '@/components/pagination'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useLandingPages } from '@/lib/swr-hooks'
 
@@ -9,7 +10,7 @@ import { useLandingPages } from '@/lib/swr-hooks'
 function UnauthenticatedIndexPage() {
   return (
     <div>
-      <Nav />
+      <Nav title="KingsLandingPage" />
         <Container>
          Authenticating... please wait.
         </Container>
@@ -44,6 +45,7 @@ function AuthenticatedIndexPage({ email }) {
       <Nav />
       <Container>
         <LandingPages landingpages={landingpages} />
+        <Pagination results={landingpages} />
       </Container>
     </div>
   )

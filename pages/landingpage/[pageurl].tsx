@@ -1,12 +1,40 @@
 import { useRouter } from 'next/router'
 
 import { useLandingPageByUrl } from '@/lib/swr-hooks'
-import Container from '@/components/container'
-import Nav from '@/components/nav'
+
+
+//LOG USER REFERRER DATA
+const AccessData = require("access-data-parser");
+
+const queriesFromBrowser = {
+  utm_source: "",
+  utm_medium: "",
+  utm_campaign: "",
+  utm_content: "",
+  utm_term: "",
+  referrer: ""
+};
+ 
+console.log("~~~~~~~~~new AccessData(queriesFromBrowser)~~~~~~~~~")
+console.log(new AccessData(queriesFromBrowser))
+console.log("======/new AccessData(queriesFromBrowser)======")
+/* expected:
+ {
+   source: 'google',
+   medium: 'organic',
+   referrer: 'https://google.com/',
+   channel: 'organic'
+ }
+*/
 
 export default function LandingPage() {
+
   const router = useRouter()
   const pageurl = router.query.pageurl?.toString()
+
+
+
+
   const { data } = useLandingPageByUrl(pageurl)
 
   console.log(data);

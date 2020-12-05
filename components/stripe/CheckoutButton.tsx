@@ -21,12 +21,15 @@ export default function CheckoutButton() {
 
   return (
     <>
-    <span>
-      Basic Plan 
-    </span>
-    <Button onClick={goToCheckout}>
-      Upgrade
-    </Button>
+      <Button onClick={goToCheckout}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        <span className="ml-2">
+          Upgrade
+        </span>
+      </Button>
     </>
   )
 }
+

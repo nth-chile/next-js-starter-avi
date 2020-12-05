@@ -6,14 +6,15 @@ function ButtonLink({ href = '/', className = '', children }) {
     <Link href={href}>
       <a
         className={cn(
-          'bg-black',
-          'text-white',
+          'bg-blue',
+          'text-gray-500',
+          'hover:text-gray-900',
           'p-2',
           'rounded',
           'uppercase',
           'text-sm',
-          'font-bold',
-          {
+          'font-medium',
+         {
             [className]: Boolean(className),
           }
         )}
