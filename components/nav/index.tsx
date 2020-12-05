@@ -99,7 +99,7 @@ export default function Nav({ title = 'KingsLandingPage' }) {
           </div>
         </nav>
       </div>
-      <div className="max-w-7xl mx-auto px-4 py-2 sm:px-6 border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-4 py-2 my-4 sm:px-6 border-b border-gray-200">
         <div className="hidden md:flex md:space-x-10 ">
           {typeof window !== 'undefined' && !auth0.isLoading && auth0.isAuthenticated && 
             <>

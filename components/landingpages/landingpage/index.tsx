@@ -74,32 +74,30 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
   //   </div>
   // )
 
-  const divStyle = {
+  const thumbStyle = {
     backgroundColor: '#efefef',
     backgroundImage: 'url(' + thumburl + ')',
     backgroundSize: '100%',
+    minHeight: '100px',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center top',
-
+    overflow: 'hidden',
   };
 
   return (
     
-  
+    
       <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-        <div>
-          <a className="block flex-1 flex flex-col p-8"  style={divStyle} href={`/landingpage/${pageurl}`}>
-            
-            <dl className="mt-1 flex-grow flex flex-col justify-between">
-              <dd className="mt-3">
-          
-
-              </dd>
-            </dl>
+        <div key={landingpage_id} className="py-2">
+          <a href={`/landingpage/${pageurl}`} className="text-gray-900 hover:text-gray-500">
+            <span className="block flex-1 flex flex-col p-8" style={thumbStyle}></span>
+            <span className="mt-6 text-sm font-medium">{nickname}</span>
           </a>
         </div>
         <div>
-           <h3 className="mt-6 text-gray-900 text-sm font-medium">{nickname}</h3>
+          <a className=""  href={`/landingpage/${pageurl}`}>
+           
+          </a>
         </div>
         <div>
           <div className="-mt-px flex divide-x divide-gray-200">
