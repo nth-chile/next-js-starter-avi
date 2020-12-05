@@ -105,7 +105,7 @@ export default function LandingPageForm({ landingpage_id, nickname, headline, su
       }
 
       //GRAB SNAPSHOT
-      const url = encodeURIComponent("http://yahoo.com") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
+      const url = encodeURIComponent("https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
       const snapshot = await axios.get(`/api/get-snapshot?url=${url}&name=${pageURLFromDB}.png`)
       //const { filepath } = snapshot.data
       //console.log(filepath);

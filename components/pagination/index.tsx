@@ -1,7 +1,7 @@
 function Pagination({ results }) {
 
     return (
-        <div className="bg-white px-4 py-3 mt-4 flex items-center justify-between border-t border-gray-200 sm:px-6">
+        <div className="bg-white py-3 mt-4 flex items-center justify-between border-t border-gray-200 ">
             <div className="flex-1 flex justify-between sm:hidden">
                 <a href="#" className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500">
                 Previous
@@ -14,11 +14,11 @@ function Pagination({ results }) {
                 <div>
                 <p className="text-sm text-gray-700">
                     Showing
-                    <span className="font-medium">1</span>
+                    <span className="font-medium mx-1">1</span>
                     to
-                    <span className="font-medium">10</span>
+                    <span className="font-medium mx-1">10</span>
                     of
-                    <span className="font-medium">97</span>
+                    <span className="font-medium mx-1">97</span>
                     results
                 </p>
                 </div>

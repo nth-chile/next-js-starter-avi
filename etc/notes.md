@@ -24,6 +24,9 @@ Questions for Jared
 -how to make enabling / disabling ui state change
 -how to make individual inputs into a component so i can build this rapidly (eg. landingpageform)
 -how to include <!-- --> in tsx files?
+-how to get toggle-icon component working
+-how to wire up pagination
+* why does page seem to fire off multiple times?
 
 TODO
 ================
@@ -40,7 +43,14 @@ TODO
 - wire up pagination
 - fix up cards layout
 * wire up enable / disable
-
+* wire up pagination
+* toggle between table and card view
+- center align Create New Button
+- swap out stripe deets
+* refactor landingpage and editlandingpage into one form
+- add cloning
+* iframe / equivalent for owners.
+- copy url to clipboard
 
 GIT INSTRUCTIONS
 ================
