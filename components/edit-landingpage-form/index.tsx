@@ -1,24 +1,57 @@
 import { useState, useEffect } from 'react'
-import Router, { useRouter } from 'next/router'
-import axios from 'axios'
+import { useRouter } from 'next/router'
 
 import ButtonPrimary from '../button-primary'
 
-export default function LandingPageForm({ landingpage_id, nickname, headline, subheadline, description, ctatext, ctaurl, ctasurvey, pagetags, logourl, bgurl, googleanalyticsid, klpbranding, pageurl }) {
-  const [_landingpage_id, setLandingpage_id] = useState<string | number>('')
-  const [_nickname, setNickname] = useState('')
-  const [_headline, setHeadline] = useState('')
-  const [_subheadline, setSubheadline] = useState('')
-  const [_description, setDescription] = useState('')
-  const [_ctatext, setCtatext] = useState('')
-  const [_ctaurl, setCtaurl] = useState('')
-  const [_ctasurvey, setCtasurvey] = useState('')
-  const [_pagetags, setPagetags] = useState('')
-  const [_logourl, setLogourl] = useState('')
-  const [_bgurl, setBgurl] = useState('')
-  const [_googleanalyticsid, setGoogleanalyticsid] = useState('')
-  const [_klpbranding, setKlpbranding] = useState<string | number>('')
-  const [_pageurl, setPageurl] = useState('')
+type Props = {
+  submitHandler?: any;
+  landingpage_id?: string;
+  nickname?: string;
+  headline?: string;
+  subheadline?: string;
+  description?: string;
+  ctatext?: string;
+  ctaurl?: string;
+  ctasurvey?: string;
+  pagetags?: string;
+  logourl?: string;
+  bgurl?: string;
+  googleanalyticsid?: string;
+  klpbranding?: number;
+  pageurl?: string;
+}
+
+export default function LandingPageForm({
+  submitHandler,
+  landingpage_id,
+  nickname,
+  headline,
+  subheadline,
+  description,
+  ctatext,
+  ctaurl,
+  ctasurvey,
+  pagetags,
+  logourl,
+  bgurl,
+  googleanalyticsid,
+  klpbranding,
+  pageurl
+}: Props) {
+  const [_landingpage_id, setLandingpage_id] = useState<string | number>(landingpage_id || '')
+  const [_nickname, setNickname] = useState(nickname || '')
+  const [_headline, setHeadline] = useState(headline || '')
+  const [_subheadline, setSubheadline] = useState(subheadline || '')
+  const [_description, setDescription] = useState(description || '')
+  const [_ctatext, setCtatext] = useState(ctatext || '')
+  const [_ctaurl, setCtaurl] = useState(ctaurl || '')
+  const [_ctasurvey, setCtasurvey] = useState(ctasurvey || '')
+  const [_pagetags, setPagetags] = useState(pagetags || '')
+  const [_logourl, setLogourl] = useState(logourl || '')
+  const [_bgurl, setBgurl] = useState(bgurl || '')
+  const [_googleanalyticsid, setGoogleanalyticsid] = useState(googleanalyticsid || '')
+  const [_klpbranding, setKlpbranding] = useState<string | number>(klpbranding || '')
+  const [_pageurl, setPageurl] = useState(pageurl || '')
   const [submitting, setSubmitting] = useState(false)
   const router = useRouter()
   //const { subheadline, description, ctatext, ctaurl, ctasurvey, pagetags, logourl, bgurl, googleanalyticsid, klpbranding } = router.query
@@ -68,72 +101,31 @@ export default function LandingPageForm({ landingpage_id, nickname, headline, su
     }
   }, [landingpage_id, nickname, headline, subheadline, description, ctatext, ctaurl, ctasurvey, pagetags, logourl, bgurl, googleanalyticsid, klpbranding, pageurl])
 
-  async function submitHandler(e) {
+
+  function handleSubmit (e) {
     e.preventDefault()
-    setSubmitting(true)
-    try {
-      const res = await fetch('/api/edit-landingpage', {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          landingpage_id: _landingpage_id,
-          nickname: _nickname,
-          headline: _headline,
-          subheadline: _subheadline,
-          description: _description,
-          ctatext: _ctatext,
-          ctaurl: _ctaurl,
-          ctasurvey: _ctasurvey,
-          pagetags: _pagetags,
-          logourl: _logourl,
-          bgurl: _bgurl,
-          googleanalyticsid: _googleanalyticsid,
-          klpbranding: _klpbranding,
-          pageurl: _pageurl
-        }),
-      })
 
-      setSubmitting(false)
-      const json = await res.json()
-
-      const { pageurl: pageURLFromDB } = json[0][0]
-
-      if (!res.ok) { 
-        throw Error(json.message);
-      }
-
-      //GRAB SNAPSHOT
-      const url = encodeURIComponent("https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
-      const snapshot = await axios.get(`/api/get-snapshot?url=${url}&name=${pageURLFromDB}.png`)
-      //const { filepath } = snapshot.data
-      //console.log(filepath);
-
-      if (pageURLFromDB) {
-        Router.push(`/landingpage/${pageURLFromDB}`)
-      } else {
-        Router.push('/')
-      }
-      
-    } catch (e) {
-      throw Error(e.message)
-    }
-
+    submitHandler(
+      _landingpage_id,
+      _nickname,
+      _headline,
+      _subheadline,
+      _description,
+      _ctatext,
+      _ctaurl,
+      _ctasurvey,
+      _pagetags,
+      _logourl,
+      _bgurl,
+      _googleanalyticsid,
+      _klpbranding,
+      _pageurl,
+      setSubmitting
+    )
   }
 
   return (
-    <form onSubmit={submitHandler}>
-
-        <input
-          id="landingpage_id"
-          className="shadow border rounded w-full"
-          type="hidden"
-          name="landingpage_id"
-          value={_landingpage_id}
-          onChange={(e) => setLandingpage_id(e.target.value)}
-        />
-
+    <form onSubmit={handleSubmit}>
       <div className="my-4">
         <label htmlFor="nickname">
           <h3 className="font-bold">Nickname</h3>

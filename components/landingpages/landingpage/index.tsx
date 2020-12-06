@@ -2,11 +2,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { mutate } from 'swr'
 
-
- 
-
-
-function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vstatus, statviews, statctaclicks, statsurveysaves }) {
+function LandingPage({ landingpage_id, nickname, pageurl, thumburl, vstatus }) {
   const [deleting, setDeleting ] = useState(false)
   const [disabling, setDisabling ] = useState(false)
   const [statusBtnText, setStatusBtnText ] = useState(["Enabling...","Enable"])
@@ -28,6 +24,10 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
     if (!res.ok) throw Error(json.message)
     mutate('/api/get-landingpages')
     setDisabling(false)
+  }
+
+  const handleClone = () => {
+
   }
   
 
@@ -90,7 +90,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
       <li key={landingpage_id} className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 min-w-full">
         <div className="py-2">
           <a href={`/landingpage/${pageurl}`} className="text-gray-900 hover:text-gray-500">
-            <span className="block flex-1 flex flex-col p-8" style={thumbStyle}></span>
+            <span className="flex-1 flex flex-col p-8" style={thumbStyle}></span>
             <span className="mt-6 text-sm font-medium">{nickname}</span>
           </a>
         </div>
@@ -146,16 +146,16 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
             </div>
 
 
-            <div className="-ml-px w-0 flex-1 flex">
-              <a href="#" className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-400 font-medium border border-transparent rounded-br-lg hover:text-gray-700">
-
-
-                <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <title>duplicate</title>
-                  <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
-                  <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
-                </svg>
-              </a>
+            <div className="p-0 w-0 flex-1 flex">
+              <Link href={`/landingpage/edit/${pageurl}?clone=true`}>
+                <a className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-400 font-medium border border-transparent rounded-br-lg hover:text-gray-700">
+                  <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <title>duplicate</title>
+                    <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
+                    <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
+                  </svg>
+                </a>
+              </Link>
             </div>      
 
 

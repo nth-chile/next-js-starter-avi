@@ -1,39 +1,11 @@
-import Link from 'next/link'
-import ButtonPrimary from '@/components/button-primary'
-import Button from '@/components/button'
 import ButtonLinkPrimary from '@/components/button-link-primary'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useEffect } from 'react'
-import axios from 'axios'
-import CheckoutBtn from "@/components/stripe/CheckoutButton"
 
 export default function NavSecondary({ title = 'KingsLandingPage' }) {
   const auth0 = useAuth0()
-  
-  const handleLoginClick = () => {
-    auth0.loginWithRedirect()
-  }
-
-  const handleLogoutClick = () => {
-    auth0.logout()
-  }
-
-  useEffect(() => {
-    if (auth0.isAuthenticated) {
-      axios.post('http://localhost:3000/api/create-user', {
-        user: auth0.user
-      }).then(res => {
-        if (res) {
-          console.log(res);
-        }
-      })
-    }
-  }, [auth0.isAuthenticated])
 
   return (
     <>
-
-    
     {typeof window !== 'undefined' && !auth0.isLoading && auth0.isAuthenticated && 
  
       <div className="bg-white py-3 flex items-center justify-between border-b border-gray-200 mb-4">
@@ -77,7 +49,7 @@ export default function NavSecondary({ title = 'KingsLandingPage' }) {
                             </div>
                         </div>
                         <div className=" ml-4">
-                            <input placeholder="filter placeholder" className=" h-full border h-full pl-4" />
+                            <input placeholder="filter placeholder" className="h-full border pl-4" />
                         </div>
                     </div>
                 </div>
