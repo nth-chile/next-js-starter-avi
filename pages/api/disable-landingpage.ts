@@ -16,20 +16,13 @@ const handler: NextApiHandler = async (req, res) => {
       return res.status(400).json({ message: '`status` must be a number' })
     }
 
-    var varStatus = 1;
-    //switch enable / disable positions
-    if (parseInt(status) == 1) {
-      varStatus = 0;
-    } else {
-      varStatus = 1;
-    }
-
     const results = await query(
       `
       CALL disable_landingpage
       (?,?)
   `,
-      [id,varStatus]
+      // @ts-ignore
+      [id, status]
     )
     res.json(results)
   } catch (e) {
