@@ -87,8 +87,8 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
   return (
     
     
-      <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-        <div key={landingpage_id} className="py-2">
+      <li key={landingpage_id} className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 min-w-full">
+        <div className="py-2">
           <a href={`/landingpage/${pageurl}`} className="text-gray-900 hover:text-gray-500">
             <span className="block flex-1 flex flex-col p-8" style={thumbStyle}></span>
             <span className="mt-6 text-sm font-medium">{nickname}</span>

@@ -6,7 +6,6 @@ function ButtonLinkPrimary({ href = '/', className = '', children }) {
     <Link href={href}>
       <a
         className={cn(
-            'ml-8',
             'whitespace-nowrap',
             'inline-flex',
             'items-center',

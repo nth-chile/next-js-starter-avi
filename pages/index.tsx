@@ -1,5 +1,6 @@
 import Skeleton from 'react-loading-skeleton'
-import Nav from '@/components/nav'
+import NavPrimary from '@/components/nav-primary'
+import NavSecondary from '@/components/nav-secondary'
 import Container from '@/components/container'
 import LandingPages from '@/components/landingpages'
 import Pagination from '@/components/pagination'
@@ -10,7 +11,7 @@ import { useLandingPages } from '@/lib/swr-hooks'
 function UnauthenticatedIndexPage() {
   return (
     <div>
-      <Nav title="KingsLandingPage" />
+      <NavPrimary title="KingsLandingPage" />
         <Container>
          Authenticating... please wait.
         </Container>
@@ -22,10 +23,12 @@ function AuthenticatedIndexPage({ email }) {
 
   const { landingpages, isLoading } = useLandingPages(email)
 
+
+
   if (isLoading) {
     return (
       <div>
-        <Nav />
+        <NavPrimary />
         <Container>
           <Skeleton width={180} height={24} />
           <Skeleton height={48} />
@@ -40,12 +43,17 @@ function AuthenticatedIndexPage({ email }) {
     )
   }
 
+  // console.log("~~~~~~~~~landingpages.keys(landingpages).length~~~~~~~~~")
+  // console.log(landingpages.keys(landingpages).length)
+  // console.log("======/landingpages.keys(landingpages).length======")
+
   return (
     <div>
-      <Nav />
+      <NavPrimary />
       <Container>
+        <NavSecondary />
         <LandingPages landingpages={landingpages} />
-        <Pagination results={landingpages} />
+        <Pagination results={landingpages.length} />
       </Container>
     </div>
   )

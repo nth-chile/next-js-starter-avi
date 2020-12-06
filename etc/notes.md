@@ -40,8 +40,6 @@ TODO
 - Add background image searching
 - Site design implementation in Tailwind
 - Stripe swap out credentials
-- wire up pagination
-- fix up cards layout
 * wire up enable / disable
 * wire up pagination
 * toggle between table and card view
@@ -51,6 +49,8 @@ TODO
 - add cloning
 * iframe / equivalent for owners.
 - copy url to clipboard
+* how to get the auth0 info outside of nav-primary (eg. nav-secondary)
+- set a min-width on the landingpage cards
 
 GIT INSTRUCTIONS
 ================

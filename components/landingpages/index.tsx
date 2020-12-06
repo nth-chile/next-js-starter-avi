@@ -10,7 +10,7 @@ function LandingPages({ landingpages }) {
 
         <LandingPageNew />
         {landingpages.map((e) => (
-          <LandingPage landingpage_id={e.landingpage_id} nickname={e.nickname} headline={e.headline} pageurl={e.pageurl} thumburl={e.thumburl} vstatus={e.status} statviews={e.statviews} statctaclicks={e.statctaclicks} statsurveysaves={e.statsurveysaves} />
+          <LandingPage key={e.landingpage_id} landingpage_id={e.landingpage_id} nickname={e.nickname} headline={e.headline} pageurl={e.pageurl} thumburl={e.thumburl} vstatus={e.status} statviews={e.statviews} statctaclicks={e.statctaclicks} statsurveysaves={e.statsurveysaves} />
         ))}
       </ul>
 
