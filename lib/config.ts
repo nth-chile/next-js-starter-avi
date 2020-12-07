@@ -1,4 +1,4 @@
 export const config = ({
-      itemsperpage: 4,
+      itemsperpage: 20,
       pageblocks:5 //should be an odd #
   })
