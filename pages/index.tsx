@@ -6,59 +6,62 @@ import LandingPages from '@/components/landingpages'
 import Pagination from '@/components/pagination'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useLandingPages } from '@/lib/swr-hooks'
+import pageint from '@/components/utils/pageint'
+import Footer from '@/components/footer'
+import Router, { useRouter } from 'next/router'
 
 function UnauthenticatedIndexPage() {
   return (
-    <div>
-      <NavPrimary title="KingsLandingPage" />
-        <Container>
-         Authenticating... please wait.
-        </Container>
-    </div>
+    <>
+      <Container>
+        <NavPrimary title="Dashboard {Authenticating}" />
+        <NavSecondary />
+        <LandingPages landingpages={[]} />
+        <Pagination results={0} />
+        <Footer />
+      </Container>
+    </>
   )
 }
 
-function AuthenticatedIndexPage({ email }) {
+function AuthenticatedIndexPage({ email, page }) {
 
-  const { landingpages, isLoading } = useLandingPages(email)
-
-
+  const { landingpages, isLoading } = useLandingPages(email,page)
 
   if (isLoading) {
     return (
-      <div>
-        <NavPrimary />
+      <>
         <Container>
-          <Skeleton width={180} height={24} />
-          <Skeleton height={48} />
-          <div className="my-4" />
-          <Skeleton width={180} height={24} />
-          <Skeleton height={48} />
-          <div className="my-4" />
-          <Skeleton width={180} height={24} />
-          <Skeleton height={48} />
+          <NavPrimary title="Dashboard {Loading}" />
+          <NavSecondary />
+          <LandingPages landingpages={[]} />
+          <Pagination results={0} />
+          <Footer />
         </Container>
-      </div>
+      </>
     )
   }
 
   return (
-    <div>
-      <NavPrimary />
+    <>
       <Container>
+        <NavPrimary title="Dashboard" />
         <NavSecondary />
         <LandingPages landingpages={landingpages.data} />
         <Pagination results={landingpages.meta[0].sum_landingpages} />
+        <Footer />
       </Container>
-    </div>
+    </>
   )
 }
 
 export default function IndexPage() {
   const auth0 = useAuth0()
+  const router = useRouter()
+  const page = pageint(router.query.page)
 
   if (auth0.isAuthenticated) {
-    return <AuthenticatedIndexPage email={auth0.user.email} />
+    return <AuthenticatedIndexPage email={auth0.user.email} page={page} />
   }
   
   return <UnauthenticatedIndexPage />

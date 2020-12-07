@@ -1,4 +1,5 @@
 import { config } from '../../lib/config'
+import pageint from '../utils/pageint'
 import Router, { useRouter } from 'next/router'
 
 function* range(start, end, step) {
@@ -11,17 +12,8 @@ function* range(start, end, step) {
 function Pagination({ results }) {
 
     const router = useRouter()
-    const pagenumber = router.query.page?.toString()
-
-    var varCurrentPage = 1    
-    if (!pagenumber) {
-        varCurrentPage = 1
-    }
-    //@ts-ignore
-    if (!isNaN(pagenumber)) {
-        varCurrentPage = parseInt(pagenumber)
-    }
-    varCurrentPage = Math.max(varCurrentPage,1)
+    const varPage = router.query.page?.toString()
+    var varCurrentPage = pageint(varPage)
 
     //PAGE VARIABLES LOGIC
     var varPerPage = config.itemsperpage
@@ -74,7 +66,6 @@ function Pagination({ results }) {
 
     var prevStyle = {}
     if (varPreviousPage <= 0) {
-        console.log("prev=true")
         prevStyle = disabledStyle
     }
 

@@ -1,13 +1,11 @@
 import Link from 'next/link'
-import ButtonPrimary from '@/components/button-primary'
 import Button from '@/components/button'
-import ButtonLinkPrimary from '@/components/button-link-primary'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react'
 import axios from 'axios'
 import CheckoutBtn from "@/components/stripe/CheckoutButton"
 
-export default function Nav({ title = 'KingsLandingPage' }) {
+export default function Nav({ title = 'Pass a title to NavPrimary' }) {
   const auth0 = useAuth0()
   
   const handleLoginClick = () => {
@@ -48,15 +46,44 @@ export default function Nav({ title = 'KingsLandingPage' }) {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto p-4 sm:px-6 border-b border-gray-200">
+      <div className="mx-auto py-4  border-b border-gray-200">
         <nav className="relative flex items-center justify-between sm:h-10 md:justify-center" aria-label="Global">
           <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
             <div className="flex items-left justify-between w-full md:w-auto">
-                  <Link href="/">
-                   <span>
-                      <a className="font-bold text-3xl mr-3">{title}</a>
-                   </span>
-                  </Link>
+              
+              <Link href="/">
+                <span className="align-text-center">
+                  <a href="/" className="font-bold text-indigo-600 hover:text-gray-600">
+                    <span className="inline-block">
+                      <svg version="1.1" viewBox="0 0 24 24" fill="#000" stroke="none" className="w-6 h-6 inline-block " xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <clipPath id="p.0">
+                            <path d="m0 0l24.0 0l0 24.0l-24.0 0l0 -24.0z" clipRule="nonzero"/>
+                        </clipPath>
+                        <g clipPath="url(#p.0)">
+                            <path fill="none" fillOpacity="0.0" d="m0 0l24.0 0l0 24.0l-24.0 0z" fillRule="evenodd"/>
+                            <defs>
+                                <linearGradient id="p.1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(4.898988352703109 0.0 0.0 4.898988352703109 0.0 0.0)" spreadMethod="pad" x1="6.419772243792141E-11" y1="-1.7734225357105054E-5" x2="-1.7734225357105054E-5" y2="4.898970618445653">
+                                    <stop offset="0.0" stopColor="currentColor"/>
+                                    <stop offset="1.0" stopColor="currentColor" />
+                                </linearGradient>
+                            </defs>
+                            <path fill="url(#p.1)" d="m0 4.00008l0 0c0 -2.2091832 1.7908968 -4.00008 4.00008 -4.00008l15.99984 0l0 0c1.0608864 0 2.0783234 0.4214358 2.8284836 1.1715963c0.7501602 0.7501606 1.1715965 1.7675965 1.1715965 2.8284838l0 15.99984c0 2.2091827 -1.7908974 4.00008 -4.00008 4.00008l-15.99984 0c-2.2091832 0 -4.00008 -1.7908974 -4.00008 -4.00008z" fillRule="evenodd"/>
+                            <path fill="#ffffff" d="m11.300074 16.642866l0 -7.968503l-7.9685035 7.968503z" fillRule="evenodd"/>
+                            <path fill="#ffffff" d="m12.697292 16.642866l0 -7.968503l7.968504 7.968503z" fillRule="evenodd"/>
+                            <path fill="#ffffff" d="m2.8184254 7.3635793l3.9370081 3.9842515l-3.9370081 3.984252z" fillRule="evenodd"/>
+                            <path fill="#ffffff" d="m21.181347 7.358163l-3.937008 3.984252l3.937008 3.984252z" fillRule="evenodd"/>
+                        </g>
+                      </svg> 
+                    </span>
+                  
+                    <span className="inline-block ml-1">
+                      KingsLanding.Page
+                    </span>
+                  </a>
+                  <span className="inline-block ml-1"> \ {title}
+                  </span>
+                </span>
+              </Link>
               <div className="-mr-2 flex items-center md:hidden">
                 <button type="button" className="bg-gray-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" id="main-menu" aria-haspopup="true">
                   <span className="sr-only">Open main menu</span>

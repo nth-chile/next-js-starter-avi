@@ -1,12 +1,6 @@
 get-landinpages.ts
 - switch main parameter from email to user_id once we figure out how to keep that in server memory
 
-api/edit-landingpage.ts
-- blank info being passed to stored proc
-
-api/create-landingpage.ts
-- blank info being passed to stored proc
-
 components/landingpageform
 - UI: check if the pageurl exists before submitting so the user can adjust it if so...
 
@@ -16,19 +10,17 @@ Auth0 hooks
 api/create-landingpage.ts
 - hacked together by using user email instead of user id. Need to fix this once we figure out how to get user_id.
 
-index.ts
-- Enable / disable ui state isnt updating (but works in the db)
+API security
+- use Auth0 api
 
 Questions for Jared
 ===================
-- how to wire up pagination
 * why does page seem to fire off multiple times, first time as undefined? 
     SEE http://localhost:3000/landingpage/axeman%20(justified) - look in browser console when page is refreshed
     SEE http://localhost:3000/landingpage/edit/fighters?clone=true - browser console
-* how to make toggle display cursor like a button (missing href)
 * how to put functionality behind a laid out confirm message
-* get-landingpages.ts / line 20 - how to send to json multiple result sets as one file so i can include pagination info. Currently using object.assign, but that creates it as the same recordset as other tables. i want it separate.
 * how to include google analytics / javascript libraries in jsx pages
+* how to access querystring variable at top level (pages/index.tsx). I made a util called querystring to parse it there - ideally would use that.
 
 TODO
 ================
@@ -42,7 +34,6 @@ TODO
 - stats dashboard
 - stats page
 - Add background image searching
-- Site design implementation in Tailwind
 - Stripe swap out credentials
 * wire up pagination //https://medium.com/javascript-in-plain-english/simple-pagination-in-next-js-using-react-paginate-562830c00279
 * toggle between table and card view
@@ -53,6 +44,8 @@ TODO
 - copy url to clipboard
 - set a min-width on the landingpage cards
 - show 404 / message when a landing page is disabled
+- animation placeholder for landingpages while loading
+
 
 GIT INSTRUCTIONS
 ================

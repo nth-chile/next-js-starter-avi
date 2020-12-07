@@ -184,8 +184,9 @@ export default function EditLandingPage() {
 
     return (
       <>
-        <NavPrimary title={pageTitle} />
+
         <Container>
+          <NavPrimary title={pageTitle} />
           <EditLandingPageForm 
             submitHandler={submitHandler}
             landingpage_id={data.landingpage_id}
