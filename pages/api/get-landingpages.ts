@@ -17,7 +17,9 @@ const handler: NextApiHandler = async (req, res) => {
       [email]
     ) 
 
-    return res.json(results[0])
+    return res.json({meta:results[0], data:results[1]})
+  //  return res.json({data: results[0]})
+  //  return res.json({meta: results[0], data: results[1]})
   } catch (e) {
     res.status(500).json({ message: e.message })
   }

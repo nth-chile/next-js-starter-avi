@@ -1,6 +1,6 @@
 function LandingPageNew() {
     return (
-        <li className="col-span-1 flex flex-col text-center rounded-lg shadow divide-y divide-gray-200 justify-center">
+        <li className="hidden sm:flex md:flex col-span-1 flex flex-col text-center rounded-lg shadow divide-y divide-gray-200 justify-center">
             <div className="align-start h-full">
                 <a href="/new" className="block py-2 text-white hover:text-gray-500 bg-gray-300 justify-center rounded-t-lg">
                     <span className="block flex-1 flex flex-col items-center p-2">

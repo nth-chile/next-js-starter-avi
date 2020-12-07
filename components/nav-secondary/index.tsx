@@ -26,21 +26,23 @@ export default function NavSecondary({ title = 'KingsLandingPage' }) {
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
 
 
-                <div className="hidden md:flex md:items-center md:justify-start md:inset-y-0 md:left-0">
+                <div className="md:flex md:items-center md:justify-start md:inset-y-0 md:left-0">
                     <div className="inline-flex rounded-md">
                         <div>
-                            <div className="hidden md:flex md:items-center md:justify-start md:inset-y-0 md:left-0">
+                            <div className="md:flex md:items-center md:justify-start md:inset-y-0 md:left-0">
                                 <span className="inline-flex rounded-md">
                                     <nav className="relative z-0 inline-flex shadow-sm -space-x-px" aria-label="Pagination">
                                         <a href="#" className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                        <span className="sr-only">Previous</span>
+                                        <span className="sr-only">Grid View</span>
                                         <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <title>Grid View</title>
                                             <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                                         </svg>
                                         </a>
-                                        <a href="#" className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-300 hover:bg-gray-50">
-                                        <span className="sr-only">Next</span>
+                                        <a href="#" className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-300 hover:bg-gray-50 ">
+                                        <span className="sr-only">Table View</span>
                                             <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <title>Table View</title>
                                                 <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                                             </svg>
                                         </a>
@@ -49,7 +51,7 @@ export default function NavSecondary({ title = 'KingsLandingPage' }) {
                             </div>
                         </div>
                         <div className=" ml-4">
-                            <input placeholder="filter placeholder" className="h-full border pl-4" />
+                            <input placeholder="filter placeholder" className="h-full border pl-4 hover:border-gray-300 hover:shadow" />
                         </div>
                     </div>
                 </div>

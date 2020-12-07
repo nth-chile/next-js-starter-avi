@@ -7,7 +7,6 @@ import Pagination from '@/components/pagination'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useLandingPages } from '@/lib/swr-hooks'
 
-
 function UnauthenticatedIndexPage() {
   return (
     <div>
@@ -43,17 +42,13 @@ function AuthenticatedIndexPage({ email }) {
     )
   }
 
-  // console.log("~~~~~~~~~landingpages.keys(landingpages).length~~~~~~~~~")
-  // console.log(landingpages.keys(landingpages).length)
-  // console.log("======/landingpages.keys(landingpages).length======")
-
   return (
     <div>
       <NavPrimary />
       <Container>
         <NavSecondary />
-        <LandingPages landingpages={landingpages} />
-        <Pagination results={landingpages.length} />
+        <LandingPages landingpages={landingpages.data} />
+        <Pagination results={landingpages.meta[0].sum_landingpages} />
       </Container>
     </div>
   )

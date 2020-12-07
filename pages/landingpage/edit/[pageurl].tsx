@@ -174,11 +174,17 @@ export default function EditLandingPage() {
     )
   }
 
+  var pageTitle = "Edit Landing Page"
+
+  if (isClone == "true") {
+    pageTitle = "Clone Landing Page"
+  }
+
   if (data) {
 
     return (
       <>
-        <NavPrimary title="Edit" />
+        <NavPrimary title={pageTitle} />
         <Container>
           <EditLandingPageForm 
             submitHandler={submitHandler}

@@ -21,12 +21,14 @@ index.ts
 
 Questions for Jared
 ===================
--how to make enabling / disabling ui state change
--how to make individual inputs into a component so i can build this rapidly (eg. landingpageform)
--how to include <!-- --> in tsx files?
--how to get toggle-icon component working
--how to wire up pagination
-* why does page seem to fire off multiple times?
+- how to wire up pagination
+* why does page seem to fire off multiple times, first time as undefined? 
+    SEE http://localhost:3000/landingpage/axeman%20(justified) - look in browser console when page is refreshed
+    SEE http://localhost:3000/landingpage/edit/fighters?clone=true - browser console
+* how to make toggle display cursor like a button (missing href)
+* how to put functionality behind a laid out confirm message
+* get-landingpages.ts / line 20 - how to send to json multiple result sets as one file so i can include pagination info. Currently using object.assign, but that creates it as the same recordset as other tables. i want it separate.
+* how to include google analytics / javascript libraries in jsx pages
 
 TODO
 ================
@@ -35,22 +37,22 @@ TODO
 - Store billing info from Stripe
 * Update instance -> Figure out load balancing on AWS
 - Working domain on AWS
-* Working SSL on AWS
+- Working SSL on AWS
 - Stats updated on CTA clicks and page calls
+- stats dashboard
+- stats page
 - Add background image searching
 - Site design implementation in Tailwind
 - Stripe swap out credentials
-* wire up enable / disable
-* wire up pagination
+* wire up pagination //https://medium.com/javascript-in-plain-english/simple-pagination-in-next-js-using-react-paginate-562830c00279
 * toggle between table and card view
 - center align Create New Button
 - swap out stripe deets
-* refactor landingpage and editlandingpage into one form
 - add cloning
 * iframe / equivalent for owners.
 - copy url to clipboard
-* how to get the auth0 info outside of nav-primary (eg. nav-secondary)
 - set a min-width on the landingpage cards
+- show 404 / message when a landing page is disabled
 
 GIT INSTRUCTIONS
 ================

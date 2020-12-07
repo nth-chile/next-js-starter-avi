@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-
+import ReactGA from 'react-ga';
 import { useLandingPageByUrl } from '@/lib/swr-hooks'
 
 
@@ -15,9 +15,6 @@ const queriesFromBrowser = {
   referrer: ""
 };
  
-console.log("~~~~~~~~~new AccessData(queriesFromBrowser)~~~~~~~~~")
-console.log(new AccessData(queriesFromBrowser))
-console.log("======/new AccessData(queriesFromBrowser)======")
 /* expected:
  {
    source: 'google',
@@ -41,6 +38,25 @@ export default function LandingPage() {
 
   if (!data) {
     return <div>No data</div>
+  }
+
+  if (data.status == 0) {
+    return (
+      <div>I got 99 problems and a page ain't one.</div>
+    )
+  }
+
+  //allow custom tracking
+  if (data.googleanalyticsid.length > 0) {
+    ReactGA.initialize(data.googleanalyticsid);
+    ReactGA.pageview(window.location.pathname + window.location.search);
+}
+
+  async function userCTA(category,action) {
+    ReactGA.event({
+      category: category, //'user'
+      action: action //'sent a message
+    });
   }
 
   return (
