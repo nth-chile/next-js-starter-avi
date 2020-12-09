@@ -7,7 +7,7 @@ export default function CheckoutButton() {
     const stripe = await loadStripe('pk_test_51Hu2ytCNkMNtmpAn9AlriAXEYptmTVXS8CuiLrlKU2wZzfrwBLlTcUT3wwIz9vVb5MnXzA3w9bufcqGPETXZ1zVx00tr0xj1N7')
     
     // Get token
-    const tokenFetch = await axios.post('/api/stripe/create-checkout-session', {
+    const tokenFetch = await axios.post('/api/stripe/checkout-session-create', {
       priceId: 'price_1Hu2zgCNkMNtmpAnsQ2O2Sj9'
     })
 

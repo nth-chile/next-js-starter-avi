@@ -7,10 +7,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'accent-1': '#333'
+        'accent-1': '#333',
+        klp: {
+          darkest: '#9900ff',
+          dark: '#ae35ff',
+          DEFAULT: '#cb7cff',
+          light: '#ddaaff',
+          lightest: '#eeccff',
+        },
       },
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [
+          // ...
+          require('@tailwindcss/forms'),
+  ],
 }

@@ -8,7 +8,16 @@ import { query } from '../../lib/db'
 
 
 const handler: NextApiHandler = async (req, res) => {
-  const { pageurl } = req.query
+  const { query: reqQuery } = req
+
+  const pageurl = reqQuery.pageurl as string
+ 
+  //are we tracking the pageview
+  const track = reqQuery.track as string
+  var varTrack = 0
+  if (track.length > 0 ) {
+    varTrack = parseInt(track) 
+  }
 
   try {
     if (!pageurl) {
@@ -17,9 +26,9 @@ const handler: NextApiHandler = async (req, res) => {
 
      const results = await query(
        `
-       CALL sel_landingpage_by_url (?)
+       CALL sel_landingpage_by_url (?,?)
      `,
-       pageurl
+       [pageurl,varTrack]
      )
 
     return res.json(results[0][0])

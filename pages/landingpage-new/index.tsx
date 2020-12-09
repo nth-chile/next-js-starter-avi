@@ -1,6 +1,6 @@
 import NavPrimary from '@/components/nav-primary'
 import Container from '@/components/container'
-import LandingPageForm from '@/components/edit-landingpage-form'
+import LandingPageForm from '@/components/landingpage-form'
 import Router from 'next/router'
 import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -31,7 +31,7 @@ export default function NewLandingPage() {
 
       const maybeEmail = (auth0.user && auth0.user.email) || ""
 
-      const res = await fetch('/api/create-landingpage', {
+      const res = await fetch('/api/landingpage-create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,14 +68,18 @@ export default function NewLandingPage() {
       setSubmitting(false)
 
       //GRAB SNAPSHOT
-      const url = encodeURIComponent("https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
-      const snapshot = await axios.get(`/api/get-snapshot?url=${url}&name=${pageURLFromDB}.png`)
+      const colors = ["9900ff", "ff00ff", "0000ff", "4a86e8", "00ffff", "00ff00", "ffff00","ff9900","ff0000","980000"];
+      const randomcolor = colors[Math.floor(Math.random() * colors.length)];
+      var url = `https://dummyimage.com/1024x768/${randomcolor}/ffffff.png&text=${headline}` //https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
+      url = encodeURIComponent(url)
+      
+      const snapshot = await axios.get(`/api/snapshot-get?url=${url}&name=${pageURLFromDB}.png`)
       //const { filepath } = snapshot.data
       //console.log(filepath);
       
       //ROUTE USER
       if (pageURLFromDB) {
-        Router.push(`/landingpage/${pageURLFromDB}`)
+        Router.push(`/landingpage/${pageURLFromDB}?track=0`)
       } else {
         Router.push('/')
       }

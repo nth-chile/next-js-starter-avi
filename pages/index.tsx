@@ -2,7 +2,7 @@ import Skeleton from 'react-loading-skeleton'
 import NavPrimary from '@/components/nav-primary'
 import NavSecondary from '@/components/nav-secondary'
 import Container from '@/components/container'
-import LandingPages from '@/components/landingpages'
+import LandingPages from '@/components/landingpage-array'
 import Pagination from '@/components/pagination'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useLandingPages } from '@/lib/swr-hooks'
@@ -16,6 +16,7 @@ function UnauthenticatedIndexPage() {
       <Container>
         <NavPrimary title="Dashboard {Authenticating}" />
         <NavSecondary />
+        <Skeleton />
         <LandingPages landingpages={[]} />
         <Pagination results={0} />
         <Footer />
@@ -34,6 +35,7 @@ function AuthenticatedIndexPage({ email, page }) {
         <Container>
           <NavPrimary title="Dashboard {Loading}" />
           <NavSecondary />
+          
           <LandingPages landingpages={[]} />
           <Pagination results={0} />
           <Footer />

@@ -1,5 +1,5 @@
-import LandingPage from './landingpage'
-import LandingPageNew from './landingpage-new'
+import LandingPage from '../landingpage'
+import LandingPageNew from '../landingpage-new'
 
 function LandingPages({ landingpages }) {
   if (landingpages) {

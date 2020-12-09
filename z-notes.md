@@ -7,7 +7,7 @@ components/landingpageform
 Auth0 hooks
 - When we get code online, update the hooks to use domains and remove create user api post from nav (line 29)
 
-api/create-landingpage.ts
+api/landingpage-create.ts
 - hacked together by using user email instead of user id. Need to fix this once we figure out how to get user_id.
 
 API security
@@ -17,35 +17,37 @@ Questions for Jared
 ===================
 * why does page seem to fire off multiple times, first time as undefined? 
     SEE http://localhost:3000/landingpage/axeman%20(justified) - look in browser console when page is refreshed
-    SEE http://localhost:3000/landingpage/edit/fighters?clone=true - browser console
-* how to put functionality behind a laid out confirm message
+    SEE http://localhost:3000/landingpage-edit/fighters?clone=true - browser console
+* how to put functionality behind a modal confirm message
 * how to include google analytics / javascript libraries in jsx pages
-* how to access querystring variable at top level (pages/index.tsx). I made a util called querystring to parse it there - ideally would use that.
+* how to do confirm messages on index page (for disable / deletions) without creating tons of prompts at pageload
+* why can't javascript functions be passed parameters (See [pageurl.tsx] trackLandingpageStatctaclicks function on 55 / 171 as of this writing)
+* Keep data from fetching before auth0 returns *landingpage/[pageurl.tsx] - we can't track against author clicks otherwise
+- can we unify new landingpages and edit landingpage forms?
+* how to include a page of generally useful functions instead of importing 1 x 1 as components?
 
 TODO
 ================
-* Store user_id in globally accessible variable
+* Store user_id in globally accessible variable - IMPORTANT!!
 * Configure custom fields within Auth0 (username, user_id?) 
 - Store billing info from Stripe
 * Update instance -> Figure out load balancing on AWS
 - Working domain on AWS
 - Working SSL on AWS
-- Stats updated on CTA clicks and page calls
 - stats dashboard
 - stats page
+- stats survey
 - Add background image searching
 - Stripe swap out credentials
-* wire up pagination //https://medium.com/javascript-in-plain-english/simple-pagination-in-next-js-using-react-paginate-562830c00279
 * toggle between table and card view
-- center align Create New Button
-- swap out stripe deets
-- add cloning
 * iframe / equivalent for owners.
-- copy url to clipboard
-- set a min-width on the landingpage cards
 - show 404 / message when a landing page is disabled
-- animation placeholder for landingpages while loading
-
+- animation placeholder (skeleton / font-flow) for landingpages while loading
+* security on APIs - https://auth0.com/docs/libraries/auth0-react#call-an-api
+* html templates in mysql?
+- capture audiences via custom referrer urls (premium)
+- error when redir on edit, after changing pageurl
+- s3 bucket isnt overwriting filenames on pageurl edit
 
 GIT INSTRUCTIONS
 ================
@@ -63,10 +65,12 @@ cd /opt/bitnami
 ./ctlscript.sh stop apache
 # install ssl - see here: https://aws.amazon.com/premiumsupport/knowledge-center/linux-lightsail-ssl-bitnami/
 sudo /opt/bitnami/bncert-tool
+# UPLOAD FILES VIA SSH (FILEZILLA)
 # START THE SERVER
 cd /home/bitnami/projects/kingslandingpage
 yarn
 sudo yarn dev
+NEED: yarn build <-- when ready to test the build?
 
 
 TOOLS

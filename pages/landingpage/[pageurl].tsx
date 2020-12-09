@@ -4,7 +4,7 @@ import { useLandingPageByUrl } from '@/lib/swr-hooks'
 import Modal from 'react-modal'
 import { useState, useEffect } from 'react'
 import Button from '@/components/button'
-
+import { useAuth0 } from '@auth0/auth0-react'
 
 //LOG USER REFERRER DATA
 const AccessData = require("access-data-parser");
@@ -33,6 +33,13 @@ export default function LandingPage() {
   const [modalIsOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const pageurl = router.query.pageurl?.toString()
+  var track = router.query.track?.toString() || "1" //see if we are tracking this pageview or not. We ignore owners.
+
+  const auth0 = useAuth0()
+  const maybeEmail = (auth0.user && auth0.user.email) || ""
+
+  // if (maybeEmail.length > 0 && track != "1") {
+  //   track = "0"
 
   const openModal = () => {
     setIsOpen(true)
@@ -42,12 +49,11 @@ export default function LandingPage() {
     setIsOpen(false)
   }
 
-  const { data } = useLandingPageByUrl(pageurl)
+  const { data } = useLandingPageByUrl(pageurl,track)
 
-  console.log(data);
-
+  
   if (!data) {
-    return <div>No data</div>
+    return <div>This page is not available. Sorry!</div>
   }
 
   if (data.status == 0) {
@@ -56,10 +62,30 @@ export default function LandingPage() {
     )
   }
 
-  // allow custom tracking
-  if (data.googleanalyticsid.length > 0) {
-    ReactGA.initialize(data.googleanalyticsid);
-    ReactGA.pageview(window.location.pathname + window.location.search);
+//   //allow custom tracking
+//   if (data.googleanalyticsid.length > 0) {
+//     ReactGA.initialize(data.googleanalyticsid);
+//     ReactGA.pageview(window.location.pathname + window.location.search);
+// }
+
+//   async function userCTA(category,action) {
+//     ReactGA.event({
+//       category: category, //'user'
+//       action: action //'sent a message
+//     });
+//   }
+
+  async function trackLandingpageStatctaclicks() {
+    let res = await fetch(`/api/landingpage-statctaclicks-track?pageurl=${pageurl}&track=${track}`, { method: 'POST' })
+    let json = await res.json()
+
+
+   const { ctaurl: ctaurl } = json[0][0]
+
+    if (!res.ok) throw Error(json.message)
+    if (ctaurl.length > 0) {
+      document.location.href = ctaurl
+    }
   }
 
   useEffect(() => {
@@ -71,11 +97,11 @@ export default function LandingPage() {
     script.async = true;
 
     script.onload = () => {
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      // window.dataLayer = window.dataLayer || [];
+      // function gtag(){dataLayer.push(arguments);}
+      // gtag('js', new Date());
       
-      gtag('config', '255368356')
+      // gtag('config', '255368356')
     }
 
     document.body.appendChild(script);
@@ -198,9 +224,9 @@ export default function LandingPage() {
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className="rounded-md shadow">
-                  {/* <a href={data.ctaurl} className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                  <a onClick={trackLandingpageStatctaclicks} className="cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
                   {data.ctatext}
-                  </a> */}
+                  </a>
                   <Button onClick={openModal} className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">{data.ctatext}</Button>
                   <Modal
                     isOpen={modalIsOpen}

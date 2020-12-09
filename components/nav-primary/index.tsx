@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react'
 import axios from 'axios'
 import CheckoutBtn from "@/components/stripe/CheckoutButton"
+import { totalmem } from 'os'
 
 export default function Nav({ title = 'Pass a title to NavPrimary' }) {
   const auth0 = useAuth0()
@@ -18,7 +19,7 @@ export default function Nav({ title = 'Pass a title to NavPrimary' }) {
 
   useEffect(() => {
     if (auth0.isAuthenticated) {
-      axios.post('http://localhost:3000/api/create-user', {
+      axios.post('http://localhost:3000/api/user-create', {
         user: auth0.user
       }).then(res => {
         if (res) {
@@ -38,14 +39,23 @@ export default function Nav({ title = 'Pass a title to NavPrimary' }) {
             
   //         </div>
   //         {typeof window !== 'undefined' && !auth0.isLoading && !auth0.isAuthenticated && <Button onClick={handleLoginClick}>Log in</Button>}
-  //         {typeof window !== 'undefined' && !auth0.isLoading && auth0.isAuthenticated && <><ButtonLink href="/new">Create Page</ButtonLink><CheckoutBtn /><Button onClick={handleLogoutClick}>Log out</Button></>}
+  //         {typeof window !== 'undefined' && !auth0.isLoading && auth0.isAuthenticated && <><ButtonLink href="/landingpage-new">Create Page</ButtonLink><CheckoutBtn /><Button onClick={handleLogoutClick}>Log out</Button></>}
   //       </div>
   //     </nav>
   // )
 
+//   EXAMPLES OF HOW TO DO RESPONSIVE FLEX
+//   <div>
+//   <div className="border hidden sm:inline-block">sm</div>
+//   <div className="border hidden md:inline-block">md</div>
+//   <div className="border hidden lg:inline-block">lg</div>
+//   <div className="border hidden xl:inline-block">xl</div>
+//   <div className="border hidden 2xl:inline-block">2xl</div>
+// </div>
 
   return (
     <>
+
       <div className="mx-auto py-4  border-b border-gray-200">
         <nav className="relative flex items-center justify-between sm:h-10 md:justify-center" aria-label="Global">
           <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
@@ -53,9 +63,12 @@ export default function Nav({ title = 'Pass a title to NavPrimary' }) {
               
               <Link href="/">
                 <span className="align-text-center">
-                  <a href="/" className="font-bold text-indigo-600 hover:text-gray-600">
+                  <a href="/" className="font-bold text-klp-darkest hover:text-klp-dark">
                     <span className="inline-block">
                       <svg version="1.1" viewBox="0 0 24 24" fill="#000" stroke="none" className="w-6 h-6 inline-block " xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <title>
+                          KingsLanding.Page
+                        </title>
                         <clipPath id="p.0">
                             <path d="m0 0l24.0 0l0 24.0l-24.0 0l0 -24.0z" clipRule="nonzero"/>
                         </clipPath>
@@ -76,9 +89,10 @@ export default function Nav({ title = 'Pass a title to NavPrimary' }) {
                       </svg> 
                     </span>
                   
-                    <span className="inline-block ml-1">
+                    <span className="hidden sm:inline-block ml-2">
                       KingsLanding.Page
                     </span>
+
                   </a>
                   <span className="inline-block ml-1"> \ {title}
                   </span>
