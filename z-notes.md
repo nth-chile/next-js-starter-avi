@@ -24,6 +24,7 @@ Questions for Jared
 * why can't javascript functions be passed parameters (See [pageurl.tsx] trackLandingpageStatctaclicks function on 55 / 171 as of this writing)
 * Keep data from fetching before auth0 returns *landingpage/[pageurl.tsx] - we can't track against author clicks otherwise
 - can we unify new landingpages and edit landingpage forms?
+* how to include a page of generally useful functions instead of importing 1 x 1 as components?
 
 TODO
 ================

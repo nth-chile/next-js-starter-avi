@@ -3,6 +3,8 @@ import { NextApiHandler } from 'next'
 import axios from 'axios'
 import { prependListener, prependOnceListener } from 'process';
 import { allowedStatusCodes } from 'next/dist/lib/load-custom-routes';
+import filesperfolder from '../../components/utils/filesperfolder'
+
 var AWS = require('aws-sdk');
 
 const handler: NextApiHandler = async (req, res) => {
