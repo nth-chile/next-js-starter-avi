@@ -41,6 +41,9 @@ export default function LandingPage() {
   // if (maybeEmail.length > 0 && track != "1") {
   //   track = "0"
 
+  // TODO
+  // const { data } = useGetSurveyQuestionsByPageURL(modalIsOpen ? pageurl : null)
+
   const openModal = () => {
     setIsOpen(true)
   }
@@ -88,28 +91,28 @@ export default function LandingPage() {
     }
   }
 
-  useEffect(() => {
-    // Load script
-    const script = document.createElement('script');
+  // useEffect(() => {
+  //   // Load script
+  //   const script = document.createElement('script');
 
-    script.src = "https://www.googletagmanager.com/gtag/js?id=255368356"
+  //   script.src = "https://www.googletagmanager.com/gtag/js?id=255368356"
 
-    script.async = true;
+  //   script.async = true;
 
-    script.onload = () => {
-      // window.dataLayer = window.dataLayer || [];
-      // function gtag(){dataLayer.push(arguments);}
-      // gtag('js', new Date());
+  //   script.onload = () => {
+  //     // window.dataLayer = window.dataLayer || [];
+  //     // function gtag(){dataLayer.push(arguments);}
+  //     // gtag('js', new Date());
       
-      // gtag('config', '255368356')
-    }
+  //     // gtag('config', '255368356')
+  //   }
 
-    document.body.appendChild(script);
+  //   document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
-    }
-  }, [])
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   }
+  // }, [])
 
   // async function userCTA(category,action) {
   //   ReactGA.event({
@@ -234,6 +237,14 @@ export default function LandingPage() {
                     contentLabel="Modal"
                   >
                     <button onClick={closeModal}>close</button>
+
+                    {/* // TODO */}
+                    {/* {data && <LoadingWheel />}
+                    
+                    {!data && <>
+                      <div>{data.title}</div>
+                      <div>{data.id}</div>
+                    </>} */}
                   </Modal>
                 </div>
                 {/* 
