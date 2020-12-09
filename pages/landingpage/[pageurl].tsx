@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router'
 import ReactGA from 'react-ga';
 import { useLandingPageByUrl } from '@/lib/swr-hooks'
+import Modal from 'react-modal'
+import { useState, useEffect } from 'react'
+import Button from '@/components/button'
 
 
 //LOG USER REFERRER DATA
@@ -24,13 +27,20 @@ const queriesFromBrowser = {
  }
 */
 
-export default function LandingPage() {
+Modal.setAppElement('#__next')
 
+export default function LandingPage() {
+  const [modalIsOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const pageurl = router.query.pageurl?.toString()
 
+  const openModal = () => {
+    setIsOpen(true)
+  }
 
-
+  const closeModal = () => {
+    setIsOpen(false)
+  }
 
   const { data } = useLandingPageByUrl(pageurl)
 
@@ -46,18 +56,41 @@ export default function LandingPage() {
     )
   }
 
-  //allow custom tracking
+  // allow custom tracking
   if (data.googleanalyticsid.length > 0) {
     ReactGA.initialize(data.googleanalyticsid);
     ReactGA.pageview(window.location.pathname + window.location.search);
-}
-
-  async function userCTA(category,action) {
-    ReactGA.event({
-      category: category, //'user'
-      action: action //'sent a message
-    });
   }
+
+  useEffect(() => {
+    // Load script
+    const script = document.createElement('script');
+
+    script.src = "https://www.googletagmanager.com/gtag/js?id=255368356"
+
+    script.async = true;
+
+    script.onload = () => {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      gtag('config', '255368356')
+    }
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    }
+  }, [])
+
+  // async function userCTA(category,action) {
+  //   ReactGA.event({
+  //     category: category, //'user'
+  //     action: action //'sent a message
+  //   });
+  // }
 
   return (
     <div className="relative bg-gray-50 overflow-hidden">
@@ -165,9 +198,17 @@ export default function LandingPage() {
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className="rounded-md shadow">
-                  <a href={data.ctaurl} className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                  {/* <a href={data.ctaurl} className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
                   {data.ctatext}
-                  </a>
+                  </a> */}
+                  <Button onClick={openModal} className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">{data.ctatext}</Button>
+                  <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="Modal"
+                  >
+                    <button onClick={closeModal}>close</button>
+                  </Modal>
                 </div>
                 {/* 
                 <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
