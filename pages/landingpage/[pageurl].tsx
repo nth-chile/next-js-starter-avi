@@ -59,7 +59,7 @@ export default function LandingPage() {
 //   }
 
   async function trackLandingpageStatctaclicks() {
-    let res = await fetch(`/api/landingpage-statctaclicks-track?pageurl=${pageurl}`, { method: 'POST' })
+    let res = await fetch(`/api/local/landingpage-statctaclicks-track?pageurl=${pageurl}`, { method: 'POST' })
     let json = await res.json()
 
     console.log(json)

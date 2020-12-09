@@ -12,21 +12,21 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
   async function deleteLandingPage() {
     if (confirm("Are you sure you want to delete this landing page?") == true) {
     setDeleting(true)
-    let res = await fetch(`/api/delete-landingpage?id=${landingpage_id}`, { method: 'DELETE' })
+    let res = await fetch(`/api/local/delete-landingpage?id=${landingpage_id}`, { method: 'DELETE' })
     let json = await res.json()
     if (!res.ok) throw Error(json.message)
-    mutate('/api/landingpage-array-get')
+    mutate('/api/local/landingpage-array-get')
     setDeleting(false)
     }
   }
 
   async function disableLandingPage() {
     setDisabling(true)
-    let res = await fetch(`/api/landingpage-disable?id=${landingpage_id}&status=${isEnabled ? 0 : 1}`, { method: 'POST' })
+    let res = await fetch(`/api/local/landingpage-disable?id=${landingpage_id}&status=${isEnabled ? 0 : 1}`, { method: 'POST' })
     setIsEnabled(!isEnabled)
     let json = await res.json()
     if (!res.ok) throw Error(json.message)
-    mutate('/api/landingpage-array-get')
+    mutate('/api/local/landingpage-array-get')
     setDisabling(false)
   }
 
