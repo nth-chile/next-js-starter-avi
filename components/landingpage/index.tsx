@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { mutate } from 'swr'
-import { config } from '../../../lib/config'
+import { config } from '../../lib/config'
 import * as React from "react";
 import { Menu, Transition, Listbox, Switch } from "@headlessui/react";
 
@@ -15,18 +15,18 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
     let res = await fetch(`/api/delete-landingpage?id=${landingpage_id}`, { method: 'DELETE' })
     let json = await res.json()
     if (!res.ok) throw Error(json.message)
-    mutate('/api/get-landingpages')
+    mutate('/api/landingpage-array-get')
     setDeleting(false)
     }
   }
 
   async function disableLandingPage() {
     setDisabling(true)
-    let res = await fetch(`/api/disable-landingpage?id=${landingpage_id}&status=${isEnabled ? 0 : 1}`, { method: 'POST' })
+    let res = await fetch(`/api/landingpage-disable?id=${landingpage_id}&status=${isEnabled ? 0 : 1}`, { method: 'POST' })
     setIsEnabled(!isEnabled)
     let json = await res.json()
     if (!res.ok) throw Error(json.message)
-    mutate('/api/get-landingpages')
+    mutate('/api/landingpage-array-get')
     setDisabling(false)
   }
 
@@ -43,6 +43,11 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
     backgroundPosition: 'center',
     overflow: 'hidden',
   };
+
+  var statratio = 0
+  if (statctaclicks > 0) {
+    statratio = Math.round((statctaclicks/statviews)*100)+'%'
+  }
 
   return (
     
@@ -106,7 +111,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
               <div className="w-0 flex-1 flex">
                 <div className="relative w-0 flex-1 items-center justify-center text-sm text-gray-400 font-medium border border-transparent">
                   <div className="block">Score</div>
-                  <div className="block text-xs">{statsurveysaves}</div>
+                  <div className="block text-xs">{statratio}</div>
                 </div>
               </div>              
 
@@ -206,7 +211,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
                                 {({ active }) => (
                                     
                                     <a
-                                    href={`/landingpage/edit/${pageurl}`}
+                                    href={`/landingpage-edit/${pageurl}`}
                                     className={`${
                                         active
                                         ? "bg-gray-100 text-gray-900"
@@ -234,7 +239,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
                                 {({ active }) => (
                                     
                                     <a
-                                    href={`/landingpage/edit/${pageurl}?clone=true`}
+                                    href={`/landingpage-edit/${pageurl}?clone=true`}
                                     className={`${
                                         active
                                         ? "bg-gray-100 text-gray-900"

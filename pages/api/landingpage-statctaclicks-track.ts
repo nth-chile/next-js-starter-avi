@@ -16,7 +16,7 @@ const handler: NextApiHandler = async (req, res) => {
 
     const results = await query(
       `
-      CALL track_landingpage_statctaclicks
+      CALL landingpage-statctaclicks-track
       (?)
   `,
       pageurl

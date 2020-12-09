@@ -1,6 +1,6 @@
 import NavPrimary from '@/components/nav-primary'
 import Container from '@/components/container'
-import LandingPageForm from '@/components/edit-landingpage-form'
+import LandingPageForm from '@/components/landingpage-form'
 import SampleMenu from '@/components/sample-menu'
 import SampleDropdown from '@/components/sample-dropdown'
 import Router from 'next/router'

@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import Container from '@/components/container'
 import NavPrimary from '@/components/nav-primary'
-import EditLandingPageForm from '@/components/edit-landingpage-form'
+import LandingPageForm from '@/components/landingpage-form'
 
 export default function EditLandingPage() {
   const router = useRouter()
@@ -35,7 +35,7 @@ export default function EditLandingPage() {
     try {
       const maybeEmail = (auth0.user && auth0.user.email) || ""
 
-      const res = await fetch('/api/create-landingpage', {
+      const res = await fetch('/api/landingpage-create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -72,8 +72,8 @@ export default function EditLandingPage() {
       setSubmitting(false)
 
       //GRAB SNAPSHOT
-      const url = encodeURIComponent("https://bggenerator.com/") //https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
-      const snapshot = await axios.get(`/api/get-snapshot?url=${url}&name=${pageURLFromDB}.png`)
+      const url = encodeURIComponent("https://dummyimage.com/1024x768/${randomcolor}/ffffff.png&text=${headline}") //https://bggenerator.com/") //https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
+      const snapshot = await axios.get(`/api/snapshot-get?url=${url}&name=${pageURLFromDB}.png`)
       //const { filepath } = snapshot.data
       //console.log(filepath);
       
@@ -110,7 +110,7 @@ export default function EditLandingPage() {
     setSubmitting(true)
     
     try {
-      const res = await fetch('/api/edit-landingpage', {
+      const res = await fetch('/api/landingpage-edit', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -147,9 +147,8 @@ export default function EditLandingPage() {
 
       //GRAB SNAPSHOT
       var url = `https://dummyimage.com/1024x768/${randomcolor}/ffffff.png&text=${headline}` //https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
-      console.log(url)
       var url = encodeURIComponent(url)
-      await axios.get(`/api/get-snapshot?url=${url}&name=${pageURLFromDB}.png`)
+      await axios.get(`/api/snapshot-get?url=${url}&name=${pageURLFromDB}.png`)
       //const { filepath } = snapshot.data
       //console.log(filepath);
 
@@ -192,7 +191,7 @@ export default function EditLandingPage() {
 
         <Container>
           <NavPrimary title={pageTitle} />
-          <EditLandingPageForm 
+          <LandingPageForm 
             submitHandler={submitHandler}
             landingpage_id={data.landingpage_id}
             nickname={data.nickname}

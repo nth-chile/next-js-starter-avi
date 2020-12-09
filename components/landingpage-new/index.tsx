@@ -2,7 +2,7 @@ function LandingPageNew() {
     return (
         <li className="hidden sm:flex md:flex col-span-1 flex flex-col text-center rounded-lg shadow divide-y divide-gray-200 justify-center">
             <div className="align-start h-full">
-                <a href="/new" className="block py-2 text-white hover:text-gray-500 bg-gray-300 justify-center rounded-t-lg">
+                <a href="/landingpage-new" className="block py-2 text-white hover:text-gray-500 bg-gray-300 justify-center rounded-t-lg">
                     <span className="block flex-1 flex flex-col items-center p-2">
                         <svg className="w-14 h-14" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <title>Create a New Page</title>

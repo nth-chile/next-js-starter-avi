@@ -7,7 +7,7 @@ components/landingpageform
 Auth0 hooks
 - When we get code online, update the hooks to use domains and remove create user api post from nav (line 29)
 
-api/create-landingpage.ts
+api/landingpage-create.ts
 - hacked together by using user email instead of user id. Need to fix this once we figure out how to get user_id.
 
 API security
@@ -17,7 +17,7 @@ Questions for Jared
 ===================
 * why does page seem to fire off multiple times, first time as undefined? 
     SEE http://localhost:3000/landingpage/axeman%20(justified) - look in browser console when page is refreshed
-    SEE http://localhost:3000/landingpage/edit/fighters?clone=true - browser console
+    SEE http://localhost:3000/landingpage-edit/fighters?clone=true - browser console
 * how to put functionality behind a modal confirm message
 * how to include google analytics / javascript libraries in jsx pages
 * how to do confirm messages on index page (for disable / deletions) without creating tons of prompts at pageload
@@ -26,7 +26,7 @@ Questions for Jared
 
 TODO
 ================
-* Store user_id in globally accessible variable
+* Store user_id in globally accessible variable - IMPORTANT!!
 * Configure custom fields within Auth0 (username, user_id?) 
 - Store billing info from Stripe
 * Update instance -> Figure out load balancing on AWS
@@ -43,7 +43,9 @@ TODO
 - animation placeholder (skeleton / font-flow) for landingpages while loading
 * security on APIs - https://auth0.com/docs/libraries/auth0-react#call-an-api
 * html templates in mysql?
-* 
+- capture audiences via custom referrer urls (premium)
+- error when redir on edit, after changing pageurl
+- s3 bucket isnt overwriting filenames on pageurl edit
 
 GIT INSTRUCTIONS
 ================

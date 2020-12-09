@@ -8,7 +8,7 @@ function fetcher(url: string) {
 export function useLandingPages(email,page) {
   const encodedEmail = encodeURIComponent(email)
 
-  const { data, error } = useSWR(`/api/get-landingpages?email=${encodedEmail}&page=${page}`, fetcher)
+  const { data, error } = useSWR(`/api/landingpage-array-get?email=${encodedEmail}&page=${page}`, fetcher)
 
   return {
     landingpages: data,
@@ -18,9 +18,9 @@ export function useLandingPages(email,page) {
 }
 
 export function useLandingPage(id: string) {
-  return useSWR(`/api/get-landingpage?id=${id}`, fetcher)
+  return useSWR(`/api/landingpage-get?id=${id}`, fetcher)
 }
 
 export function useLandingPageByUrl(pageurl: string) {
-  return useSWR(`/api/get-landingpage-by-url?pageurl=${pageurl}`, fetcher)
+  return useSWR(`/api/landingpage-get-by-url?pageurl=${pageurl}`, fetcher)
 }

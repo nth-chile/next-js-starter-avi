@@ -19,7 +19,7 @@ export default function Nav({ title = 'Pass a title to NavPrimary' }) {
 
   useEffect(() => {
     if (auth0.isAuthenticated) {
-      axios.post('http://localhost:3000/api/create-user', {
+      axios.post('http://localhost:3000/api/user-create', {
         user: auth0.user
       }).then(res => {
         if (res) {
@@ -39,7 +39,7 @@ export default function Nav({ title = 'Pass a title to NavPrimary' }) {
             
   //         </div>
   //         {typeof window !== 'undefined' && !auth0.isLoading && !auth0.isAuthenticated && <Button onClick={handleLoginClick}>Log in</Button>}
-  //         {typeof window !== 'undefined' && !auth0.isLoading && auth0.isAuthenticated && <><ButtonLink href="/new">Create Page</ButtonLink><CheckoutBtn /><Button onClick={handleLogoutClick}>Log out</Button></>}
+  //         {typeof window !== 'undefined' && !auth0.isLoading && auth0.isAuthenticated && <><ButtonLink href="/landingpage-new">Create Page</ButtonLink><CheckoutBtn /><Button onClick={handleLogoutClick}>Log out</Button></>}
   //       </div>
   //     </nav>
   // )
