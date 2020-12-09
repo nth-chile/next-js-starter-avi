@@ -7,7 +7,7 @@ components/landingpageform
 Auth0 hooks
 - When we get code online, update the hooks to use domains and remove create user api post from nav (line 29)
 
-api/local/landingpage-create.ts
+api/landingpage-create.ts
 - hacked together by using user email instead of user id. Need to fix this once we figure out how to get user_id.
 
 API security

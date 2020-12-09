@@ -19,7 +19,7 @@ export default function Nav({ title = 'Pass a title to NavPrimary' }) {
 
   useEffect(() => {
     if (auth0.isAuthenticated) {
-      axios.post('http://localhost:3000/api/local/user-create', {
+      axios.post('http://localhost:3000/api/user-create', {
         user: auth0.user
       }).then(res => {
         if (res) {

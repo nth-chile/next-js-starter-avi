@@ -23,7 +23,7 @@ import axios from 'axios'
 module.exports = function (user, context, cb) {
   // Perform any asynchronous actions, e.g. send notification to Slack.
 
-      axios.post('http://localhost:3000/api/local/user-create', {
+      axios.post('http://localhost:3000/api/user-create', {
         user
       }).then(res => {
         if (res) {

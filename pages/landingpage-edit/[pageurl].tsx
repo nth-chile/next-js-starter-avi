@@ -35,7 +35,7 @@ export default function EditLandingPage() {
     try {
       const maybeEmail = (auth0.user && auth0.user.email) || ""
 
-      const res = await fetch('/api/local/landingpage-create', {
+      const res = await fetch('/api/landingpage-create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export default function EditLandingPage() {
 
       //GRAB SNAPSHOT
       const url = encodeURIComponent("https://dummyimage.com/1024x768/${randomcolor}/ffffff.png&text=${headline}") //https://bggenerator.com/") //https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
-      const snapshot = await axios.get(`/api/local/snapshot-get?url=${url}&name=${pageURLFromDB}.png`)
+      const snapshot = await axios.get(`/api/snapshot-get?url=${url}&name=${pageURLFromDB}.png`)
       //const { filepath } = snapshot.data
       //console.log(filepath);
       
@@ -110,7 +110,7 @@ export default function EditLandingPage() {
     setSubmitting(true)
     
     try {
-      const res = await fetch('/api/local/landingpage-edit', {
+      const res = await fetch('/api/landingpage-edit', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ export default function EditLandingPage() {
       //GRAB SNAPSHOT
       var url = `https://dummyimage.com/1024x768/${randomcolor}/ffffff.png&text=${headline}` //https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
       var url = encodeURIComponent(url)
-      await axios.get(`/api/local/snapshot-get?url=${url}&name=${pageURLFromDB}.png`)
+      await axios.get(`/api/snapshot-get?url=${url}&name=${pageURLFromDB}.png`)
       //const { filepath } = snapshot.data
       //console.log(filepath);
 
