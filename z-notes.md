@@ -15,16 +15,10 @@ API security
 
 Questions for Jared
 ===================
-* why does page seem to fire off multiple times, first time as undefined? 
-    SEE http://localhost:3000/landingpage/axeman%20(justified) - look in browser console when page is refreshed
-    SEE http://localhost:3000/landingpage-edit/fighters?clone=true - browser console
-* how to put functionality behind a modal confirm message
+- how to put functionality behind a modal confirm message
 * how to include google analytics / javascript libraries in jsx pages
-* how to do confirm messages on index page (for disable / deletions) without creating tons of prompts at pageload
-* why can't javascript functions be passed parameters (See [pageurl.tsx] trackLandingpageStatctaclicks function on 55 / 171 as of this writing)
-* Keep data from fetching before auth0 returns *landingpage/[pageurl.tsx] - we can't track against author clicks otherwise
-- can we unify new landingpages and edit landingpage forms?
-* how to include a page of generally useful functions instead of importing 1 x 1 as components?
+* how to protect APIs from bad actors?
+* how to use cookies in react
 
 TODO
 ================

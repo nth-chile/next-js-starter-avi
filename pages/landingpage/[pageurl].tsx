@@ -1,8 +1,12 @@
 import { useRouter } from 'next/router'
 import ReactGA from 'react-ga';
 import { useLandingPageByUrl } from '@/lib/swr-hooks'
+import Modal from 'react-modal'
+import { useState, useEffect } from 'react'
+import Button from '@/components/button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Console } from 'console';
+import { NODATA } from 'dns';
 
 //LOG USER REFERRER DATA
 const AccessData = require("access-data-parser");
@@ -25,8 +29,10 @@ const queriesFromBrowser = {
  }
 */
 
+Modal.setAppElement('#__next')
+
 export default function LandingPage() {
- 
+  const [modalIsOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const pageurl = router.query.pageurl?.toString()
   var track = router.query.track?.toString() || "1" //see if we are tracking this pageview or not. We ignore owners.
@@ -34,18 +40,13 @@ export default function LandingPage() {
   const auth0 = useAuth0()
   const maybeEmail = (auth0.user && auth0.user.email) || ""
 
+  const openModal = () => {
+    setIsOpen(true)
+  }
 
-  // if (maybeEmail.length > 0 && track != "1") {
-  //   track = "0"
-
-  //   console.log("~~~~~~~~~maybeEmail~~~~~~~~~")
-  //   console.log(maybeEmail)
-  //   console.log(track)
-  //   console.log("======/maybeEmail======")
-
-  //   //TODO Keep data from fetching before auth0 returns
-
-  // }
+  const closeModal = () => {
+    setIsOpen(false)
+  }
 
   const { data } = useLandingPageByUrl(pageurl,track)
 
@@ -85,6 +86,36 @@ export default function LandingPage() {
       document.location.href = ctaurl
     }
   }
+
+  // useEffect(() => {
+  //   // Load script
+  //   const script = document.createElement('script');
+
+  //   script.src = "https://www.googletagmanager.com/gtag/js?id=255368356"
+
+  //   script.async = true;
+
+  //   script.onload = () => {
+  //     // window.dataLayer = window.dataLayer || [];
+  //     // function gtag(){dataLayer.push(arguments);}
+  //     // gtag('js', new Date());
+      
+  //     // gtag('config', '255368356')
+  //   }
+
+  //   document.body.appendChild(script);
+
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   }
+  // }, [])
+
+  // async function userCTA(category,action) {
+  //   ReactGA.event({
+  //     category: category, //'user'
+  //     action: action //'sent a message
+  //   });
+  // }
 
   return (
     <div className="relative bg-gray-50 overflow-hidden">
@@ -195,6 +226,15 @@ export default function LandingPage() {
                   <a onClick={ () => trackLandingpageStatctaclicks() } className="cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
                   {data.ctatext}
                   </a>
+                  <Button onClick={openModal} className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">{data.ctatext}</Button>
+                  <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="Modal"
+                    >
+
+                    <button onClick={closeModal}>close</button>
+                  </Modal>
                 </div>
                 {/* 
                 <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
