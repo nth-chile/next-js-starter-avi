@@ -157,7 +157,7 @@ export default function EditLandingPage() {
       //console.log(filepath);
 
       if (pageURLFromDB) {
-        Router.push(`/landingpage/${pageURLFromDB}`)
+        Router.push(`/landingpage/${pageURLFromDB}?track=0`)
       } else {
         Router.push('/')
       }
