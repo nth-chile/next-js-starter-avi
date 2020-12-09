@@ -54,6 +54,11 @@ export default function LandingPage() {
 
   const { data } = useLandingPageByUrl(pageurl,track)
 
+  useEffect(() => {
+    ReactGA.initialize('UA-28002996-3')
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }, [])
+
   
   if (!data) {
     return <div>This page is not available. Sorry!</div>
@@ -90,29 +95,6 @@ export default function LandingPage() {
       document.location.href = ctaurl
     }
   }
-
-  // useEffect(() => {
-  //   // Load script
-  //   const script = document.createElement('script');
-
-  //   script.src = "https://www.googletagmanager.com/gtag/js?id=255368356"
-
-  //   script.async = true;
-
-  //   script.onload = () => {
-  //     // window.dataLayer = window.dataLayer || [];
-  //     // function gtag(){dataLayer.push(arguments);}
-  //     // gtag('js', new Date());
-      
-  //     // gtag('config', '255368356')
-  //   }
-
-  //   document.body.appendChild(script);
-
-  //   return () => {
-  //     document.body.removeChild(script);
-  //   }
-  // }, [])
 
   // async function userCTA(category,action) {
   //   ReactGA.event({
