@@ -8,7 +8,12 @@ const handler: NextApiHandler = async (req, res) => {
   const pageurl = reqQuery.pageurl as string
  
   //are we tracking the pageview
-  const track = reqQuery.track as string
+  var track = reqQuery.track as string
+
+  var varTrack = 0
+  if (track.length > 0) {
+    varTrack = parseInt(track)
+  }
 
   try {
     if (!pageurl) {
@@ -17,10 +22,10 @@ const handler: NextApiHandler = async (req, res) => {
 
     const results = await query(
       `
-      CALL landingpage-statctaclicks-track
+      CALL landingpage_statctaclicks_track
       (?,?)
   `,
-      [pageurl,track]
+      [pageurl,varTrack]
     )
     return res.json(results)
   } catch (e) {

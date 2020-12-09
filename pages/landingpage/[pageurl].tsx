@@ -45,9 +45,11 @@ export default function LandingPage() {
 
   // }
 
-  const { data } = useLandingPageByUrl(pageurl,track)
-  
 
+
+  const { data } = useLandingPageByUrl(pageurl,track)
+
+  
   if (!data) {
     return <div>This page is not available. Sorry!</div>
   }
@@ -75,7 +77,6 @@ export default function LandingPage() {
     let res = await fetch(`/api/landingpage-statctaclicks-track?pageurl=${pageurl}&track=${track}`, { method: 'POST' })
     let json = await res.json()
 
-    console.log(json)
 
    const { ctaurl: ctaurl } = json[0][0]
 
