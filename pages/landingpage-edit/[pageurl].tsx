@@ -9,6 +9,9 @@ import LandingPageForm from '@/components/landingpage-form'
 export default function EditLandingPage() {
   const router = useRouter()
   const pageurl = router.query.pageurl?.toString()
+
+
+
   const { data } = useLandingPageByUrl(pageurl,"0")
   const auth0 = useAuth0()
 

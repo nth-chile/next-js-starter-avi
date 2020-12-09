@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import ReactGA from 'react-ga';
 import { useLandingPageByUrl } from '@/lib/swr-hooks'
 import { useAuth0 } from '@auth0/auth0-react'
+import { Console } from 'console';
 
 //LOG USER REFERRER DATA
 const AccessData = require("access-data-parser");
@@ -25,13 +26,14 @@ const queriesFromBrowser = {
 */
 
 export default function LandingPage() {
-
+ 
   const router = useRouter()
   const pageurl = router.query.pageurl?.toString()
   var track = router.query.track?.toString() || "1" //see if we are tracking this pageview or not. We ignore owners.
 
   const auth0 = useAuth0()
   const maybeEmail = (auth0.user && auth0.user.email) || ""
+
 
   // if (maybeEmail.length > 0 && track != "1") {
   //   track = "0"
@@ -44,8 +46,6 @@ export default function LandingPage() {
   //   //TODO Keep data from fetching before auth0 returns
 
   // }
-
-
 
   const { data } = useLandingPageByUrl(pageurl,track)
 
@@ -192,7 +192,7 @@ export default function LandingPage() {
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className="rounded-md shadow">
-                  <a onClick={trackLandingpageStatctaclicks} className="cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                  <a onClick={ () => trackLandingpageStatctaclicks() } className="cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
                   {data.ctatext}
                   </a>
                 </div>

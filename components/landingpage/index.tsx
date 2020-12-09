@@ -20,7 +20,8 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
     }
   }
 
-  async function disableLandingPage() {
+  async function disableLandingPage(n) {
+    if (confirm("are you sure you want to " + n + " this page?")) {
     setDisabling(true)
     let res = await fetch(`/api/landingpage-disable?id=${landingpage_id}&status=${isEnabled ? 0 : 1}`, { method: 'POST' })
     setIsEnabled(!isEnabled)
@@ -28,6 +29,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
     if (!res.ok) throw Error(json.message)
     mutate('/api/landingpage-array-get')
     setDisabling(false)
+    }
   }
 
   const handleClone = () => {
@@ -59,7 +61,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
             <div className="">
               {
                 !isEnabled && 
-                  <a onClick={disableLandingPage} className="cursor-pointer rounded-bl-lg rounded-tr-lg h-full inline-flex px-1 items-center justify-center text-sm text-red-500 font-medium bg-gray-200 border border-gray-300  hover:text-red-400 focus:text-red-600 focus:shadow-none hover:border-gray-300 hover:shadow hover:bg-gray-200" title="{headline}">
+                  <a onClick={ () => disableLandingPage("enable") } className="cursor-pointer rounded-bl-lg rounded-tr-lg h-full inline-flex px-1 items-center justify-center text-sm text-red-500 font-medium bg-gray-200 border border-gray-300  hover:text-red-400 focus:text-red-600 focus:shadow-none hover:border-gray-300 hover:shadow hover:bg-gray-200" title="{headline}">
                     <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <title>Disabled</title>
                       <circle cx="10" cy="10" r="5" stroke="none" strokeWidth="3" fill="currentColor" />
@@ -68,7 +70,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
               }
               {
                 isEnabled && 
-                <a onClick={disableLandingPage} className="cursor-pointer rounded-bl-lg rounded-tr-lg h-full inline-flex px-1 items-center justify-center text-sm text-green-500 font-medium bg-gray-200 border border-gray-300  hover:text-green-400 focus:text-green-600 focus:shadow-none hover:border-gray-300 hover:shadow hover:bg-gray-200">
+                <a onClick={ () => disableLandingPage("disable") } className="cursor-pointer rounded-bl-lg rounded-tr-lg h-full inline-flex px-1 items-center justify-center text-sm text-green-500 font-medium bg-gray-200 border border-gray-300  hover:text-green-400 focus:text-green-600 focus:shadow-none hover:border-gray-300 hover:shadow hover:bg-gray-200">
                   <svg className="animate-pulse w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <title>Enabled</title>
                     <circle cx="10" cy="10" r="5" stroke="none" strokeWidth="3" fill="currentColor" />
