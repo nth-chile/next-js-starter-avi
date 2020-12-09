@@ -79,7 +79,7 @@ export default function NewLandingPage() {
       
       //ROUTE USER
       if (pageURLFromDB) {
-        Router.push(`/landingpage/${pageURLFromDB}`)
+        Router.push(`/landingpage/${pageURLFromDB}?track=0`)
       } else {
         Router.push('/')
       }

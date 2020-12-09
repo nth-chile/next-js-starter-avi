@@ -21,6 +21,6 @@ export function useLandingPage(id: string) {
   return useSWR(`/api/landingpage-get?id=${id}`, fetcher)
 }
 
-export function useLandingPageByUrl(pageurl: string) {
-  return useSWR(`/api/landingpage-get-by-url?pageurl=${pageurl}`, fetcher)
+export function useLandingPageByUrl(pageurl: string, track: string) {
+  return useSWR(`/api/landingpage-get-by-url?pageurl=${pageurl}&track=${track}`, fetcher)
 }

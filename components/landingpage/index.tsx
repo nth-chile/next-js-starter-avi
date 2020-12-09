@@ -79,7 +79,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
 
           </div>
           <div className="border-b border-gray-200">
-            <a href={`/landingpage/${pageurl}`}>
+            <a href={`/landingpage/${pageurl}?track=0`}>
               <div className="flex-1 flex flex-col p-8 rounded-t-lg" style={thumbStyle}></div>
               {isEnabled && 
               <div className="py-2 text-sm font-medium text-indigo-700 hover:text-gray-900 hover:bg-gray-100">{nickname}</div>
@@ -185,7 +185,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
                                 {({ active }) => (
                                     
                                     <a
-                                    href={`${config.servername}/landingpage/${pageurl}`}
+                                    href={`${config.servername}/landingpage/${pageurl}?track=0`}
                                     className={`${
                                         active
                                         ? "bg-gray-100 text-gray-900"
@@ -268,7 +268,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
                                 {({ active }) => (
                                     
                                     <a
-                                    href={`/landingpage/stats/${pageurl}`}
+                                    href={`/landingpage-stats/${pageurl}`}
                                     className={`${
                                         active
                                         ? "bg-gray-100 text-gray-900"

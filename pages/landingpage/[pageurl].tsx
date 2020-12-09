@@ -28,12 +28,25 @@ export default function LandingPage() {
 
   const router = useRouter()
   const pageurl = router.query.pageurl?.toString()
-  const { data } = useLandingPageByUrl(pageurl)
+  var track = router.query.track?.toString() || "1" //see if we are tracking this pageview or not. We ignore owners.
+
   const auth0 = useAuth0()
-
-  console.log(auth0.user)
-
   const maybeEmail = (auth0.user && auth0.user.email) || ""
+
+  // if (maybeEmail.length > 0 && track != "1") {
+  //   track = "0"
+
+  //   console.log("~~~~~~~~~maybeEmail~~~~~~~~~")
+  //   console.log(maybeEmail)
+  //   console.log(track)
+  //   console.log("======/maybeEmail======")
+
+  //   //TODO Keep data from fetching before auth0 returns
+
+  // }
+
+  const { data } = useLandingPageByUrl(pageurl,track)
+  
 
   if (!data) {
     return <div>This page is not available. Sorry!</div>
@@ -59,7 +72,7 @@ export default function LandingPage() {
 //   }
 
   async function trackLandingpageStatctaclicks() {
-    let res = await fetch(`/api/landingpage-statctaclicks-track?pageurl=${pageurl}`, { method: 'POST' })
+    let res = await fetch(`/api/landingpage-statctaclicks-track?pageurl=${pageurl}&track=${track}`, { method: 'POST' })
     let json = await res.json()
 
     console.log(json)

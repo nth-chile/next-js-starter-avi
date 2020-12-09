@@ -9,7 +9,7 @@ import LandingPageForm from '@/components/landingpage-form'
 export default function EditLandingPage() {
   const router = useRouter()
   const pageurl = router.query.pageurl?.toString()
-  const { data } = useLandingPageByUrl(pageurl)
+  const { data } = useLandingPageByUrl(pageurl,"0")
   const auth0 = useAuth0()
 
   const isClone = router.query && router.query.clone
@@ -83,7 +83,7 @@ export default function EditLandingPage() {
       
       //ROUTE USER
       if (pageURLFromDB) {
-        Router.push(`/landingpage/${pageURLFromDB}`)
+        Router.push(`/landingpage/${pageURLFromDB}?track=0`)
       } else {
         Router.push('/')
       }

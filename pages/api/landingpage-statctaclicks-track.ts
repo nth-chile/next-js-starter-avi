@@ -3,23 +3,24 @@ import { query } from '../../lib/db'
 
 const handler: NextApiHandler = async (req, res) => {
 
-  const { pageurl } = req.query
+  const { query: reqQuery } = req
+
+  const pageurl = reqQuery.pageurl as string
+ 
+  //are we tracking the pageview
+  const track = reqQuery.track as string
 
   try {
     if (!pageurl) {
       return res.status(400).json({ message: 'missing pageurl' })
     }
 
-    console.log("~~~~~~~~~pageurl~~~~~~~~~")
-    console.log(pageurl)
-    console.log("======/pageurl======")
-
     const results = await query(
       `
       CALL landingpage-statctaclicks-track
-      (?)
+      (?,?)
   `,
-      pageurl
+      [pageurl,track]
     )
     return res.json(results)
   } catch (e) {

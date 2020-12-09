@@ -22,7 +22,8 @@ Questions for Jared
 * how to include google analytics / javascript libraries in jsx pages
 * how to do confirm messages on index page (for disable / deletions) without creating tons of prompts at pageload
 * why can't javascript functions be passed parameters (See [pageurl.tsx] trackLandingpageStatctaclicks function on 55 / 171 as of this writing)
-
+* Keep data from fetching before auth0 returns *landingpage/[pageurl.tsx] - we can't track against author clicks otherwise
+- can we unify new landingpages and edit landingpage forms?
 
 TODO
 ================
