@@ -72,7 +72,7 @@ export default function EditLandingPage() {
       setSubmitting(false)
 
       //GRAB SNAPSHOT
-      const url = encodeURIComponent("https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
+      const url = encodeURIComponent("https://bggenerator.com/") //https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
       const snapshot = await axios.get(`/api/get-snapshot?url=${url}&name=${pageURLFromDB}.png`)
       //const { filepath } = snapshot.data
       //console.log(filepath);
@@ -142,8 +142,13 @@ export default function EditLandingPage() {
         throw Error(json.message);
       }
 
+      const colors = ["9900ff", "ff00ff", "0000ff", "4a86e8", "00ffff", "00ff00", "ffff00","ff9900","ff0000","980000"];
+      const randomcolor = colors[Math.floor(Math.random() * colors.length)];
+
       //GRAB SNAPSHOT
-      const url = encodeURIComponent("https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
+      var url = `https://dummyimage.com/1024x768/${randomcolor}/ffffff.png&text=${headline}` //https://picsum.photos/") //TODO: REPLACE THIS WITH REAL THUMBNAIL URL ONCE LIVE - https://kingslanding.page/landingpage/${pageURLFromDB}
+      console.log(url)
+      var url = encodeURIComponent(url)
       await axios.get(`/api/get-snapshot?url=${url}&name=${pageURLFromDB}.png`)
       //const { filepath } = snapshot.data
       //console.log(filepath);

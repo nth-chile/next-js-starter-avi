@@ -1,0 +1,31 @@
+import { NextApiHandler } from 'next'
+import { query } from '../../lib/db'
+
+const handler: NextApiHandler = async (req, res) => {
+
+  const { pageurl } = req.query
+
+  try {
+    if (!pageurl) {
+      return res.status(400).json({ message: 'missing pageurl' })
+    }
+
+    console.log("~~~~~~~~~pageurl~~~~~~~~~")
+    console.log(pageurl)
+    console.log("======/pageurl======")
+
+    const results = await query(
+      `
+      CALL track_landingpage_statctaclicks
+      (?)
+  `,
+      pageurl
+    )
+    return res.json(results)
+  } catch (e) {
+      console.log("error")
+      res.status(500).json({ message: e.message })
+  }
+}
+
+export default handler

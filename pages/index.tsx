@@ -16,6 +16,7 @@ function UnauthenticatedIndexPage() {
       <Container>
         <NavPrimary title="Dashboard {Authenticating}" />
         <NavSecondary />
+        <Skeleton />
         <LandingPages landingpages={[]} />
         <Pagination results={0} />
         <Footer />
@@ -34,6 +35,7 @@ function AuthenticatedIndexPage({ email, page }) {
         <Container>
           <NavPrimary title="Dashboard {Loading}" />
           <NavSecondary />
+          
           <LandingPages landingpages={[]} />
           <Pagination results={0} />
           <Footer />

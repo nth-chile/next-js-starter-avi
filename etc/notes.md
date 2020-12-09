@@ -18,9 +18,11 @@ Questions for Jared
 * why does page seem to fire off multiple times, first time as undefined? 
     SEE http://localhost:3000/landingpage/axeman%20(justified) - look in browser console when page is refreshed
     SEE http://localhost:3000/landingpage/edit/fighters?clone=true - browser console
-* how to put functionality behind a laid out confirm message
+* how to put functionality behind a modal confirm message
 * how to include google analytics / javascript libraries in jsx pages
-* how to access querystring variable at top level (pages/index.tsx). I made a util called querystring to parse it there - ideally would use that.
+* how to do confirm messages on index page (for disable / deletions) without creating tons of prompts at pageload
+* why can't javascript functions be passed parameters (See [pageurl.tsx] trackLandingpageStatctaclicks function on 55 / 171 as of this writing)
+
 
 TODO
 ================
@@ -30,22 +32,18 @@ TODO
 * Update instance -> Figure out load balancing on AWS
 - Working domain on AWS
 - Working SSL on AWS
-- Stats updated on CTA clicks and page calls
 - stats dashboard
 - stats page
+- stats survey
 - Add background image searching
 - Stripe swap out credentials
-* wire up pagination //https://medium.com/javascript-in-plain-english/simple-pagination-in-next-js-using-react-paginate-562830c00279
 * toggle between table and card view
-- center align Create New Button
-- swap out stripe deets
-- add cloning
 * iframe / equivalent for owners.
-- copy url to clipboard
-- set a min-width on the landingpage cards
 - show 404 / message when a landing page is disabled
-- animation placeholder for landingpages while loading
-
+- animation placeholder (skeleton / font-flow) for landingpages while loading
+* security on APIs - https://auth0.com/docs/libraries/auth0-react#call-an-api
+* html templates in mysql?
+* 
 
 GIT INSTRUCTIONS
 ================
@@ -63,10 +61,12 @@ cd /opt/bitnami
 ./ctlscript.sh stop apache
 # install ssl - see here: https://aws.amazon.com/premiumsupport/knowledge-center/linux-lightsail-ssl-bitnami/
 sudo /opt/bitnami/bncert-tool
+# UPLOAD FILES VIA SSH (FILEZILLA)
 # START THE SERVER
 cd /home/bitnami/projects/kingslandingpage
 yarn
 sudo yarn dev
+NEED: yarn build <-- when ready to test the build?
 
 
 TOOLS
