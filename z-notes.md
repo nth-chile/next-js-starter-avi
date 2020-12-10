@@ -67,6 +67,10 @@ yarn
 sudo yarn dev
 NEED: yarn build <-- when ready to test the build?
 
+VERCEL
+---
+update env variables (eg. stripe) whenever changes are made to local.env!
+
 
 TOOLS
 ===============
