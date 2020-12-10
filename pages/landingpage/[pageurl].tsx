@@ -7,6 +7,11 @@ import Button from '@/components/button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Console } from 'console';
 import { NODATA } from 'dns';
+import { Component } from 'react'
+import Page from '@/components/page'
+
+import * as gtag from '@/lib/gtag'
+import { addBasePath } from 'next/dist/next-server/lib/router/router';
 
 //LOG USER REFERRER DATA
 const AccessData = require("access-data-parser");
@@ -40,8 +45,16 @@ export default function LandingPage() {
   const auth0 = useAuth0()
   const maybeEmail = (auth0.user && auth0.user.email) || ""
 
-  const openModal = () => {
+  // if (maybeEmail.length > 0 && track != "1") {
+  //   track = "0"
+
+  // TODO
+  // const { data } = useGetSurveyQuestionsByPageURL(modalIsOpen ? pageurl : null)
+
+  const openModal = (category,action,label) => {
     setIsOpen(true)
+    trackLandingpageStatctaclicks(category,action,label)
+
   }
 
   const closeModal = () => {
@@ -50,14 +63,29 @@ export default function LandingPage() {
 
   const { data } = useLandingPageByUrl(pageurl,track)
 
+  // useEffect(() => {
+  //   ReactGA.initialize('UA-28002996-3')
+  //   ReactGA.pageview(window.location.pathname + window.location.search)
+  // }, [])
+
   
   if (!data) {
-    return <div>This page is not available. Sorry!</div>
+    return (
+      <Page>
+        <div>
+          This page is not available. Sorry!
+        </div>
+      </Page>
+    )
   }
 
   if (data.status == 0) {
     return (
-      <div>I got 99 problems and a page ain't one.</div>
+      <Page>
+        <div>
+           I got 99 problems and a page ain't one.
+        </div>
+      </Page>
     )
   }
 
@@ -67,16 +95,32 @@ export default function LandingPage() {
 //     ReactGA.pageview(window.location.pathname + window.location.search);
 // }
 
-//   async function userCTA(category,action) {
-//     ReactGA.event({
-//       category: category, //'user'
-//       action: action //'sent a message
-//     });
-//   }
+  async function userCTA(category,action,label) {
+    // ReactGA.event({
+    //   category: category, //'user'
+    //   action: action //'sent a message
+    // });
+    
+    // gtag.event({
+    //   action: 'action',
+    //   category: 'category',
+    //   label: 'label',
+    // })
+  }
 
-  async function trackLandingpageStatctaclicks() {
+  async function trackLandingpageStatctaclicks(category,action,label) {
+
+    //@ts-ignore
+    gtag.event({
+      action: action,
+      category: category,
+      label: label,
+    })
+
     let res = await fetch(`/api/landingpage-statctaclicks-track?pageurl=${pageurl}&track=${track}`, { method: 'POST' })
     let json = await res.json()
+
+
 
 
    const { ctaurl: ctaurl } = json[0][0]
@@ -86,29 +130,6 @@ export default function LandingPage() {
       document.location.href = ctaurl
     }
   }
-
-  // useEffect(() => {
-  //   // Load script
-  //   const script = document.createElement('script');
-
-  //   script.src = "https://www.googletagmanager.com/gtag/js?id=255368356"
-
-  //   script.async = true;
-
-  //   script.onload = () => {
-  //     // window.dataLayer = window.dataLayer || [];
-  //     // function gtag(){dataLayer.push(arguments);}
-  //     // gtag('js', new Date());
-      
-  //     // gtag('config', '255368356')
-  //   }
-
-  //   document.body.appendChild(script);
-
-  //   return () => {
-  //     document.body.removeChild(script);
-  //   }
-  // }, [])
 
   // async function userCTA(category,action) {
   //   ReactGA.event({
@@ -223,10 +244,10 @@ export default function LandingPage() {
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className="rounded-md shadow">
-                  <a onClick={ () => trackLandingpageStatctaclicks() } className="cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                  {/* <a onClick={ () => trackLandingpageStatctaclicks() } className="cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
                   {data.ctatext}
-                  </a>
-                  <Button onClick={openModal} className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">{data.ctatext}</Button>
+                  </a> */}
+                  <a onClick={ () => openModal(`cta`,`click`,`${data.ctatext}`) } className="cursor-pointer w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">{data.ctatext}</a>
                   <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
@@ -234,15 +255,17 @@ export default function LandingPage() {
                     >
 
                     <button onClick={closeModal}>close</button>
+
+                    {/* // TODO */}
+                    {/* {data && <LoadingWheel />}
+                    
+                    {!data && <>
+                      <div>{data.title}</div>
+                      <div>{data.id}</div>
+                    </>} */}
                   </Modal>
                 </div>
-                {/* 
-                <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                  <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
-                    Live demo
-                  </a>
-                </div>
-                */}
+                
               </div>
             </div>
           </main>

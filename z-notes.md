@@ -11,21 +11,19 @@ api/landingpage-create.ts
 - hacked together by using user email instead of user id. Need to fix this once we figure out how to get user_id.
 
 API security
-- use Auth0 api
+- use internal tokens
 
 Questions for Jared
 ===================
 - how to put functionality behind a modal confirm message
-* how to include google analytics / javascript libraries in jsx pages
-* how to protect APIs from bad actors?
-* how to use cookies in react
+- how to use cookies in react
 
 TODO
 ================
 * Store user_id in globally accessible variable - IMPORTANT!!
 * Configure custom fields within Auth0 (username, user_id?) 
 - Store billing info from Stripe
-* Update instance -> Figure out load balancing on AWS
+- Update instance -> Figure out load balancing on AWS
 - Working domain on AWS
 - Working SSL on AWS
 - stats dashboard
@@ -38,7 +36,7 @@ TODO
 - show 404 / message when a landing page is disabled
 - animation placeholder (skeleton / font-flow) for landingpages while loading
 * security on APIs - https://auth0.com/docs/libraries/auth0-react#call-an-api
-* html templates in mysql?
+* jsx templates in mysql?
 - capture audiences via custom referrer urls (premium)
 - error when redir on edit, after changing pageurl
 - s3 bucket isnt overwriting filenames on pageurl edit

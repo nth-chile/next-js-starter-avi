@@ -105,23 +105,23 @@ export default function LandingPageForm({
   function handleSubmit (e) {
     e.preventDefault()
 
-    submitHandler(
-      _landingpage_id,
-      _nickname,
-      _headline,
-      _subheadline,
-      _description,
-      _ctatext,
-      _ctaurl,
-      _ctasurvey,
-      _pagetags,
-      _logourl,
-      _bgurl,
-      _googleanalyticsid,
-      _klpbranding,
-      _pageurl,
+    submitHandler({
+      landingpage_id: _landingpage_id,
+      nickname: _nickname,
+      headline: _headline,
+      subheadline: _subheadline,
+      description: _description,
+      ctatext: _ctatext,
+      ctaurl: _ctaurl,
+      ctasurvey: _ctasurvey,
+      pagetags: _pagetags,
+      logourl: _logourl,
+      bgurl: _bgurl,
+      googleanalyticsid: _googleanalyticsid,
+      klpbranding: _klpbranding,
+      pageurl: _pageurl,
       setSubmitting
-    )
+    })
   }
 
   return (

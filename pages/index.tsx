@@ -9,18 +9,16 @@ import { useLandingPages } from '@/lib/swr-hooks'
 import pageint from '@/components/utils/pageint'
 import Footer from '@/components/footer'
 import Router, { useRouter } from 'next/router'
+import Page from '@/components/page'
 
 function UnauthenticatedIndexPage() {
   return (
     <>
-      <Container>
-        <NavPrimary title="Dashboard {Authenticating}" />
-        <NavSecondary />
-        <Skeleton />
+      <Page title="Dashboard (Not Authenticated)">
         <LandingPages landingpages={[]} />
         <Pagination results={0} />
         <Footer />
-      </Container>
+      </Page>
     </>
   )
 }
@@ -32,28 +30,21 @@ function AuthenticatedIndexPage({ email, page }) {
   if (isLoading) {
     return (
       <>
-        <Container>
-          <NavPrimary title="Dashboard {Loading}" />
-          <NavSecondary />
-          
+        <Page title="Dashboard (Loading)">
           <LandingPages landingpages={[]} />
           <Pagination results={0} />
           <Footer />
-        </Container>
+        </Page>
       </>
     )
   }
 
   return (
-    <>
-      <Container>
-        <NavPrimary title="Dashboard" />
-        <NavSecondary />
+    <Page title="Dashboard">
         <LandingPages landingpages={landingpages.data} />
         <Pagination results={landingpages.meta[0].sum_landingpages} />
         <Footer />
-      </Container>
-    </>
+    </Page>
   )
 }
 

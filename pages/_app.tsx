@@ -3,12 +3,23 @@ import Auth from '@/components/auth'
 import { loadStripe } from '@stripe/stripe-js';
 import { useEffect } from "react"
 import Head from 'next/head';
+import { useRouter } from 'next/router'
+import * as gtag from '../lib/gtag'
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
+
+  const router = useRouter()
   // Load Stripe on every page as recommended here: https://www.npmjs.com/package/@stripe/stripe-js#ensuring-stripejs-is-available-everywhere
   useEffect(() => {
     loadStripe('pk_test_51Hu2ytCNkMNtmpAn9AlriAXEYptmTVXS8CuiLrlKU2wZzfrwBLlTcUT3wwIz9vVb5MnXzA3w9bufcqGPETXZ1zVx00tr0xj1N7')
-  }, [])
+    const handleRouteChange = (url) => {
+      gtag.pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <Auth>
@@ -26,4 +37,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default App
