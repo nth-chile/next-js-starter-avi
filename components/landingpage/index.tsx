@@ -46,7 +46,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
     overflow: 'hidden',
   };
 
-  var statratio = 0
+  var statratio = "0"
   if (statctaclicks > 0) {
     statratio = Math.round((statctaclicks/statviews)*100)+'%'
   }

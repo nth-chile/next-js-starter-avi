@@ -105,7 +105,7 @@ export default function EditLandingPage() {
     pageTitle = "Clone Landing Page"
   }
 
-  var d_landingpage_id=0
+  var d_landingpage_id=""
   var d_nickname=""
   var d_headline=""
   var d_subheadline=""
@@ -122,7 +122,7 @@ export default function EditLandingPage() {
 
   if (data) {
 
-    d_landingpage_id=data.landingpage_id
+    d_landingpage_id=data.landingpage_id 
     d_nickname=data.nickname
     d_headline=data.headline
     d_subheadline=data.subheadline

@@ -15,11 +15,12 @@ API security
 
 Questions for Jared
 ===================
-- how to put functionality behind a modal confirm message
-- how to use cookies in react
+*** GITHUB SECURITY UPDATE!!
 
 TODO
 ================
+- how to put functionality behind a modal confirm message
+- how to use cookies in react
 * Store user_id in globally accessible variable - IMPORTANT!!
 * Configure custom fields within Auth0 (username, user_id?) 
 - Store billing info from Stripe
@@ -56,7 +57,7 @@ LIGHTSAIL AWS INSTALL INSTRUCTIONS
 ===============
 ## GET RID OF THE DEFAULT APACHE PORT 80 SERVICE
 cd /opt/bitnami
-./ctlscript.sh stop apache
+sudo ./ctlscript.sh stop apache
 # install ssl - see here: https://aws.amazon.com/premiumsupport/knowledge-center/linux-lightsail-ssl-bitnami/
 sudo /opt/bitnami/bncert-tool
 # UPLOAD FILES VIA SSH (FILEZILLA)

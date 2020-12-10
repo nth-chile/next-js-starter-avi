@@ -9,7 +9,7 @@ var AWS = require('aws-sdk');
 
 const handler: NextApiHandler = async (req, res) => {
   const { url, name, lid } = req.query
-
+  var varlid = lid.toString()
   const encodedurl = encodeURIComponent(url as string)
 
   var snapshot = `https://api.apiflash.com/v1/urltoimage?access_key=${process.env.APIFLASH_ACCESSKEY}&delay=0&format=png&fresh=true&width=1024&height=768&quality=100&response_type=image&thumbnail_width=400&url=${encodedurl}`
@@ -47,7 +47,7 @@ const handler: NextApiHandler = async (req, res) => {
       CALL landingpage_update_thumburl
       (?,?)
       `,
-      [filepath,lid]
+      [filepath,varlid]
     )
 
     return res.json(results)
