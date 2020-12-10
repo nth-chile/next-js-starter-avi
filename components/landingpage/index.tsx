@@ -169,6 +169,7 @@ function LandingPage({ landingpage_id, nickname, headline, pageurl, thumburl, vs
                                           className="text-gray-500 text-xs tracking-tighter py-1 px-1 inline-block w-auto hover:text-green-400 focus:bg-blue-400 focus:text-white"
                                           type="text" 
                                           value={`${config.servername}/landingpage/${pageurl}`}
+                                          readOnly
                                         />
                                         <svg className="ml-1 w-7 h-7 min-w-7 inline-block hover:text-green-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                           <title>Copy URL to Clipboard</title>

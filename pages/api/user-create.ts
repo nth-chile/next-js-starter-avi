@@ -35,7 +35,7 @@ const handler: NextApiHandler = async (req, res) => {
 
       result = await query(
         `
-        CALL ins_user_team (?, ?, ?, ?)
+        CALL user_team_insert (?, ?, ?, ?)
         `,
         [email, stringified, email, email]
       )

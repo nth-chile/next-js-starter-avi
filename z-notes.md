@@ -40,6 +40,8 @@ TODO
 - capture audiences via custom referrer urls (premium)
 - error when redir on edit, after changing pageurl
 - s3 bucket isnt overwriting filenames on pageurl edit
+- page loaders
+- owner banner alert message on landing page to perform quick copy
 
 GIT INSTRUCTIONS
 ================

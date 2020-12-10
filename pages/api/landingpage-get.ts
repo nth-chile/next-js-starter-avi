@@ -14,7 +14,7 @@ const handler: NextApiHandler = async (req, res) => {
 
     const results = await query(
       `
-      CALL sel_landingpage (?)
+      CALL landingpage_select_by_id (?)
     `,
       id
     )

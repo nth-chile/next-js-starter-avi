@@ -1,8 +1,6 @@
-import { config } from '../../../lib/config'
-
-function filesperfolder(itemnumber) {    
+function filesperfolder(itemnumber,spacer) {    
     return (
-        (Math.ceil((itemnumber+1)/config.filesperfolder)*config.filesperfolder)-config.filesperfolder
+        (Math.ceil((itemnumber+1)/spacer)*spacer)-spacer
     )
 }
 

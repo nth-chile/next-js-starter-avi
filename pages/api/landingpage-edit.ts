@@ -13,7 +13,7 @@ const handler: NextApiHandler = async (req, res) => {
 
     const results = await query(
       `
-      CALL upd_landingpage
+      CALL landingpage_update
       (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
       `,
       [landingpage_id, nickname, headline,subheadline,description,ctatext,ctaurl,ctasurvey,pagetags,logourl,bgurl,googleanalyticsid,klpbranding,pageurl]

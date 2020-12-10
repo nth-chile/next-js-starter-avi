@@ -22,7 +22,7 @@ const handler: NextApiHandler = async (req, res) => {
 
     const results = await query(
       `
-      CALL INS_LANDINGPAGE (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+      CALL LANDINGPAGE_INSERT (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
       `,
       [nickname,headline,subheadline,description,ctatext,ctaurl,ctasurvey,pagetags,maybeEmail || '',logourl,bgurl,googleanalyticsid,klpbranding, pageurl || '']
     )

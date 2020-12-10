@@ -18,7 +18,7 @@ const handler: NextApiHandler = async (req, res) => {
 
     const results = await query(
       `
-      CALL disable_landingpage
+      CALL landingpage_disable
       (?,?)
   `,
       // @ts-ignore

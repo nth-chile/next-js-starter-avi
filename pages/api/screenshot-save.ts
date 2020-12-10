@@ -3,12 +3,12 @@ import { NextApiHandler } from 'next'
 import axios from 'axios'
 import { prependListener, prependOnceListener } from 'process';
 import { allowedStatusCodes } from 'next/dist/lib/load-custom-routes';
-import filesperfolder from '../../components/utils/filesperfolder'
+import { query } from '../../lib/db'
 
 var AWS = require('aws-sdk');
 
 const handler: NextApiHandler = async (req, res) => {
-  const { url, name } = req.query
+  const { url, name, lid } = req.query
 
   const encodedurl = encodeURIComponent(url as string)
 
@@ -41,6 +41,17 @@ const handler: NextApiHandler = async (req, res) => {
     })
 
     const filepath = `https://${process.env.AWS_S3BUCKET}.s3.amazonaws.com/${key}`
+
+    const results = await query(
+      `
+      CALL landingpage_update_thumburl
+      (?,?)
+      `,
+      [filepath,lid]
+    )
+
+    return res.json(results)
+
 
     res.status(200).json({ filepath })
   } catch (e) {

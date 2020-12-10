@@ -26,7 +26,7 @@ const handler: NextApiHandler = async (req, res) => {
 
      const results = await query(
        `
-       CALL sel_landingpage_by_url (?,?)
+       CALL landingpage_select_by_url (?,?)
      `,
        [pageurl,varTrack]
      )

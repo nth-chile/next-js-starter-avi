@@ -15,7 +15,7 @@ const handler: NextApiHandler = async (req, res) => {
   try {
     const results = await query(
       `
-      CALL sel_landingpage_by_user_email 
+      CALL landingpage_select_by_user_email 
       (?,?,?) 
       `,
       [email,recordstart,itemsperpage]
